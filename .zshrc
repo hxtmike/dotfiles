@@ -121,3 +121,10 @@ cl() {
 
 # load this script to have some local alias/functions
 source ~/.localrc
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/xiaotianhan/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
