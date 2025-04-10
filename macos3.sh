@@ -12,10 +12,10 @@ if ! command -v direnv &> /dev/null; then
 fi
 
 # check and install pyenv
-if ! command -v pyenv &> /dev/null; then
-    brew install pyenv
-    brew install pyenv-virtualenv
-fi
+# if ! command -v pyenv &> /dev/null; then
+#    brew install pyenv
+#     brew install pyenv-virtualenv
+# fi
 
 # for dependency reasons
 if ! command -v xz &> /dev/null; then
