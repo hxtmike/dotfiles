@@ -30,9 +30,9 @@ if ! command -v direnv &> /dev/null; then
 fi
 
 # check and install pyenv/pyenv-virtualenv
-if [ ! -d "$HOME/.pyenv/" ]; then
-    curl https://pyenv.run | bash
-fi
+# if [ ! -d "$HOME/.pyenv/" ]; then
+#    curl https://pyenv.run | bash
+# fi
 
 
 # install needed version, e.g. Python 3.10.13 
