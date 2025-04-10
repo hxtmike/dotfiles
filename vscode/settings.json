@@ -151,7 +151,7 @@
     "errorLens.enabledDiagnosticLevels": [
         "error",
         "warning"
-    ]
+    ],
     // // vim indent obj by default
     // // vim commentary by default
     
