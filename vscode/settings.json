@@ -155,4 +155,7 @@
     // // vim indent obj by default
     // // vim commentary by default
     
+    // cspell
+    "cSpell.configFile": "./cSpell.json",
+    
 }
