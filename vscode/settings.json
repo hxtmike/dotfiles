@@ -156,6 +156,6 @@
     // // vim commentary by default
     
     // cspell
-    "cSpell.configFile": "./cSpell.json",
+    "cSpell.configFile": "./cSpell.json"
     
 }
