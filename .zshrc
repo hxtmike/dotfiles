@@ -75,7 +75,7 @@ plugins=(
     zsh-syntax-highlighting
     git 
     direnv 
-    pyenv
+    # pyenv
 )
 
 # open directory using file manager in different OS
