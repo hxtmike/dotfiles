@@ -151,11 +151,8 @@
     "errorLens.enabledDiagnosticLevels": [
         "error",
         "warning"
-    ],
+    ]
     // // vim indent obj by default
     // // vim commentary by default
-    
-    // cspell
-    "cSpell.configFile": "${env:CSPELL_CONFIG}"
     
 }

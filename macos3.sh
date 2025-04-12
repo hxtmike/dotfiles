@@ -48,8 +48,5 @@ done
 
 touch ~/.localrc
 
-mkdir -p ~/.config/cSpell
-touch ~/.config/cSpell/cSpell.json
-
 # macos setting
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -boolean false # press and hold disable
