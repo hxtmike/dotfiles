@@ -26,6 +26,7 @@ fi
 mkdir -p "$HOME/Library/Application Support/Code/User/"
 
 touch ~/.localrc
+touch ~/.cSpell.json
 
 BASEDIR="$(cd "$(dirname "$0")" && pwd)"
 
