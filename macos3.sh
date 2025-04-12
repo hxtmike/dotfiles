@@ -25,8 +25,6 @@ fi
 # create symlinks for those files
 mkdir -p "$HOME/Library/Application Support/Code/User/"
 
-touch ~/.localrc
-touch ~/.cSpell.json
 
 BASEDIR="$(cd "$(dirname "$0")" && pwd)"
 
@@ -47,6 +45,11 @@ for dir repo in ${(kv)dirs_to_repos}; do
     fi
     ln -s "${BASEDIR}"/"$repo" "$dir"
 done
+
+touch ~/.localrc
+
+mkdir -p ~/.config/cSpell
+touch ~/.config/cSpell/cSpell.json
 
 # macos setting
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -boolean false # press and hold disable
