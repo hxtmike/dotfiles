@@ -1,0 +1,172 @@
+{
+    "window.zoomLevel": -2,
+    "search.showLineNumbers": true,
+    "security.workspace.trust.untrustedFiles": "newWindow",
+    "interactiveWindow.executeWithShiftEnter": true,
+
+    //workbench
+    "workbench.startupEditor": "none",
+    "workbench.colorTheme": "Monokai",
+    "workbench.tree.enableStickyScroll": true,
+        // changes and save
+    "workbench.editor.highlightModifiedTabs": true,
+        // font
+        // disable aliasing in Mac
+    // "workbench.fontAliasing": "antialiased",
+    "workbench.editorAssociations": {
+        "file:/**/*.csv": "jupyter-data-wrangler"
+    },
+
+    // Files
+    "files.autoSave": "afterDelay",
+    "files.insertFinalNewline": true,
+    "files.eol": "\n",
+
+    // Editor
+    "editor.tabSize": 4,
+    "editor.fontFamily": "MesloLGS NF",
+    "editor.minimap.enabled": true,
+    "editor.wordWrap": "on",
+    "editor.lineNumbers": "relative",
+    "editor.rulers": [80,120],
+    "editor.stickyScroll.enabled": true,
+    "editor.renderWhitespace": "all",
+    "editor.detectIndentation": true,
+    "editor.glyphMargin": true,
+        // suggestions
+    "editor.inlineSuggest.enabled": true,
+    "editor.quickSuggestions": {
+        "other": "on",
+        "comments": "on",
+        "strings": "on"
+    },
+
+        // diff editor
+    "diffEditor.ignoreTrimWhitespace": false,
+
+    // Terminal
+    "terminal.integrated.tabs.enabled": true,
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.integrated.cursorStyle": "block",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.customGlyphs": true,
+    "terminal.integrated.stickyScroll.enabled": true,
+    "terminal.integrated.scrollback": 100000,
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+        "Ubuntu-20.04 (WSL)": {
+            "path": "C:\\WINDOWS\\System32\\wsl.exe",
+
+            "args": [
+                "-d",
+                "Ubuntu-20.04"
+            ]
+        }
+    },
+    "terminal.integrated.profiles.osx": {
+        "zsh": {
+            "path": "/bin/zsh",
+            "args": [
+                "-l",
+                "-i"
+            ]
+        }
+    },
+    // git
+    "git.autofetch": true,
+    "git.untrackedChanges": "separate",
+
+    // python 
+        // all terminal setting will be only determined by the terminal 
+        // to avoid unnecessary misunderstanding
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    "pylint.args": [
+        "\"pylint.args\": [\"--disable=C0111\", \"--max-line-length=110\"]"
+    ],
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.inlayHints.callArgumentNames": "partial",
+    "python.analysis.typeCheckingMode": "standard",
+    "python.terminal.activateEnvironment": false,
+    "python.terminal.activateEnvInCurrentTerminal": false,
+
+    // Notebook
+    "notebook.stickyScroll.enabled": true,
+    "notebook.lineNumbers": "on",
+    "notebook.output.textLineLimit": 100,
+    "notebook.output.scrolling": true,
+    "notebook.insertFinalNewline": true,
+    "notebook.editorOptionsCustomizations": {
+        "editor.tabSize": 4,
+        "editor.indentSize": 4
+    },
+
+    // data wrangler
+    "dataWrangler.outputRenderer.enabledTypes": {
+        "numpy.ndarray": true
+    },
+
+    // vscode vim
+        // Basics
+    "vim.smartRelativeLine": true,
+    "vim.hlsearch": true,
+    "vim.highlightedyank.enable": true,
+
+        // keybinding
+    "vim.normalModeKeyBindings": [
+        {
+            "before":["<C-n>"],
+            "commands": [
+                ":nohl"
+            ]
+        }
+    ],
+
+        // Plugins
+    "vim.easymotion": true,
+    "vim.statusBarColorControl": true,
+        // This setting will be CONSTANTLY CHANGED BY 
+        // vim-airline feature of VIM EXTENSION!!!
+    "workbench.colorCustomizations": {
+        "editorRuler.foreground": "#ff4081",
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f",
+        "statusBar.foreground": "#ffffff",
+        "statusBar.debuggingForeground": "#ffffff"
+    },
+    "vim.surround": true,
+    "vim.camelCaseMotion.enable": true,
+
+    // error lens
+    "errorLens.enabledDiagnosticLevels": [
+        "error",
+        "warning"
+    ],
+
+    // Copilot
+    "github.copilot.nextEditSuggestions.enabled": true,
+
+    // Spell Checker
+    "cSpell.userWords": [
+        "colname",
+        "colnames",
+        "dotenv"
+    ]
+}
