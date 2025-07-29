@@ -54,10 +54,6 @@ fi
 if ! command -v tmux &> /dev/null; then
     brew install tmux
 
-    mkdir -p ~/.config/tmux
-    touch ~/.config/tmux/tmux.conf
-
-    echo "set -g mouse on" >> ~/.config/tmux/tmux.conf
 fi
 
 # fzf, fuzzy finder
@@ -68,11 +64,6 @@ fi
 # check and isntall direnv
 if ! command -v direnv &> /dev/null; then
     brew install direnv
-
-    mkdir -p ~/.config/direnv
-    touch ~/.config/direnv/direnv.toml
-    echo "[global]" >> ~/.config/direnv/direnv.toml
-    echo "load_dotenv = true" >> ~/.config/direnv/direnv.toml
 fi
 
 # uv

@@ -11,8 +11,3 @@ fi
 if [ "$(basename "$SHELL")" != "zsh" ]; then
     chsh -s $(which zsh)
 fi
-
-# check and install oh-my-zsh
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
