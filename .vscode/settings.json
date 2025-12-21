@@ -1,9 +1,19 @@
 {
     "cSpell.words": [
+        "AUTOUPDATER",
+        "btop",
         "comprun",
+        "deepl",
         "direnv",
-        "KEYTIMEOUT",
+        "easymotion",
+        "fastfetch",
+        "lazygit",
+        "lazyvim",
+        "localrc",
+        "pgsql",
+        "pylint",
         "rmds",
+        "softwareupdate",
         "vimrc"
     ]
 }

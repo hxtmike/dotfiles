@@ -3,9 +3,9 @@
 # confirmations, etc.) must go above this block; everything else may go below.
 export KEYTIMEOUT=1
 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -214,6 +214,9 @@ _fzf_comprun() {
 zstyle ':fzf-tab:*' fzf-flags ${(z)FZF_STYLE_OPTS}
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'bat --style=numbers --color=always --line-range :500 $realpath 2>/dev/null || eza --tree --color=always --level=2 $realpath 2>/dev/null'
 
+# disable auto update for claude, used homebrew to update
+export DISABLE_AUTOUPDATER=1
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -224,9 +227,31 @@ cl() {
     ls -lah
 }
 
-rmds(){
+rmds() {
     # remove .DS_Store files or current directory
     rm -f .DS_Store
+}
+
+updates_all() {
+  local stamp="$HOME/.last_update"
+  local today=$(date +%Y-%m-%d)
+
+  if [[ -f "$stamp" ]]; then
+    local last_date=$(cat -pp "$stamp")
+    if [[ "$last_date" == "$today" ]]; then
+      echo "🍺 Homebrew already updated today"
+      return
+    fi
+  fi
+
+  echo "🍺 Updating Homebrew..."
+  brew update
+  echo "⬆️ Upgrading packages..."
+  brew upgrade
+  echo "🧹 Cleaning up..."
+  brew cleanup
+  echo "$today" > "$stamp"
+  echo "✅ done"
 }
 
 
@@ -236,3 +261,9 @@ rmds(){
 # load this script to have some local alias/functions
 source ~/.localrc
 
+updates_all
+
+if [[ -o interactive ]]; then
+    clear
+    fastfetch
+fi

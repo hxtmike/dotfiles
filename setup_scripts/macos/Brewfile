@@ -1,0 +1,40 @@
+# Brewfile for macOS setup
+
+# Taps
+tap "homebrew/cask-fonts"
+
+# CLI tools - Modern replacements
+brew "bat"              # cat replacement with syntax highlighting
+brew "eza"              # ls replacement
+brew "zoxide"           # cd replacement with smart directory jumping
+brew "fd"               # find replacement
+brew "ripgrep"          # grep replacement
+brew "btop"             # top replacement
+brew "fastfetch"        # neofetch replacement
+brew "fzf"              # fuzzy finder
+
+# Development tools
+brew "rust"
+brew "uv"               # Python package installer
+brew "ruff"             # Python linter
+brew "direnv"           # Environment variable management
+brew "tmux"             # Terminal multiplexer
+
+# neovim related
+brew "neovim"           # Text editor
+brew "lazygit"          # mainly for lazyvim
+brew "tree-sitter-cli"  # mainly for lazyvim
+
+# Applications
+cask "google-chrome"
+cask "visual-studio-code"
+cask "deepl"
+cask "grammarly-desktop"
+cask "font-fira-mono-nerd-font"
+cask "claude-code"
+cask "docker-desktop"
+cask "chatgpt"
+
+# experimental / optional
+cask "chatgpt-atlas"
+cask "codex"
