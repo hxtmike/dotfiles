@@ -24,10 +24,14 @@
 + *Office
 + *New Outlook
 + *Bing Wallpaper
++ Microsoft Defender
 
 + *Lenovo Vantage (Thinkpad)
 + *WizTree
 + *Sublime Text
 + *WeChat
++ QQ
 
 ## MacOS
+
++ in the scripts session
