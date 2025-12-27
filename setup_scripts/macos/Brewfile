@@ -33,7 +33,7 @@ cask "grammarly-desktop"
 cask "font-fira-mono-nerd-font"
 cask "claude-code"
 cask "docker-desktop"
-cask "chatgpt"
+# cask "chatgpt" switch to just use atlas
 
 # experimental / optional
 cask "chatgpt-atlas"
