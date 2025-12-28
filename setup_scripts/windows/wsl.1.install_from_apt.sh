@@ -46,7 +46,8 @@ fi
 
 # fzf, fuzzy finder
 if ! command -v fzf &> /dev/null; then
-    sudo apt install fzf
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
 fi
 
 # development tools
@@ -77,6 +78,8 @@ fi
 
 # neovim related
 if ! command -v nvim &> /dev/null; then
+    sudo add-apt-repository ppa:neovim-ppa/unstable
+    sudo apt update
     sudo apt install neovim
 fi
 

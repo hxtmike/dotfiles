@@ -90,11 +90,13 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+
+
 # open directory using file manager in different OS
 if [[ "$(uname)" == "Darwin" ]]; then
     plugins+=(macos)
 elif grep -qiE "microsoft|wsl" /proc/version &> /dev/null; then
-    alias ofd="explorer.exe ."
+    alias open="explorer.exe ."
 fi
 
 
@@ -156,6 +158,9 @@ alias btop='btop \
     --force-utf'
 
 # bat
+if grep -qiE "microsoft|wsl" /proc/version &> /dev/null; then
+    alias bat='batcat' 
+fi
 alias cat='bat \
     --style=full \
     --paging=never'
@@ -178,6 +183,10 @@ eval "$(zoxide init zsh)"
 alias cd='z'
 
 # fzf
+# Add fzf if used as a git pager
+if [[ -d "$HOME/.fzf/bin" ]]; then
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fi
 source <(fzf --zsh)
 # fzf 统一的 fd 基础命令
 FZF_FD_OPTS='--hidden --exclude .git --exclude node_modules --exclude __pycache__ --exclude .venv'
@@ -232,27 +241,54 @@ rmds() {
     rm -f .DS_Store
 }
 
-updates_all() {
-  local stamp="$HOME/.last_update"
-  local today=$(date +%Y-%m-%d)
+if [[ "$(uname)" == "Darwin" ]]; then
+    updates_all() {
+        local stamp="$HOME/.last_update"
+        local today=$(date +%Y-%m-%d)
 
-  if [[ -f "$stamp" ]]; then
-    local last_date=$(cat -pp "$stamp")
-    if [[ "$last_date" == "$today" ]]; then
-      echo "🍺 Homebrew already updated today"
-      return
-    fi
-  fi
+        if [[ -f "$stamp" ]]; then
+            local last_date=$(cat -pp "$stamp")
+            if [[ "$last_date" == "$today" ]]; then
+            echo "🍺 Homebrew already updated today"
+            return
+            fi
+        fi
 
-  echo "🍺 Updating Homebrew..."
-  brew update
-  echo "⬆️ Upgrading packages..."
-  brew upgrade
-  echo "🧹 Cleaning up..."
-  brew cleanup
-  echo "$today" > "$stamp"
-  echo "✅ done"
-}
+        echo "🍺 Updating Homebrew..."
+        brew update
+        echo "⬆️ Upgrading packages..."
+        brew upgrade
+        echo "🧹 Cleaning up..."
+        brew cleanup
+        echo "$today" > "$stamp"
+        echo "✅ done"
+    }
+elif grep -qiE "microsoft|wsl" /proc/version &> /dev/null; then
+    updates_all() {
+        local stamp="$HOME/.last_update"
+        local today=$(date +%Y-%m-%d)
+
+        if [[ -f "$stamp" ]]; then
+            local last_date=$(cat "$stamp")
+            if [[ "$last_date" == "$today" ]]; then
+                echo "📦 APT already updated today"
+                return
+            fi
+        fi
+
+        echo "📦 Updating APT cache..."
+        sudo apt update
+        echo "⬆️ Upgrading packages..."
+        sudo apt upgrade -y
+        echo "🧹 Cleaning up..."
+        sudo apt autoremove -y
+        sudo apt autoclean -y
+        echo "$today" > "$stamp"
+        echo "✅ done"
+    }
+
+fi
+
 
 
 # enable vi mode in zsh/conflict with fzf ** implementation
@@ -267,3 +303,4 @@ if [[ -o interactive ]]; then
     clear
     fastfetch
 fi
+
