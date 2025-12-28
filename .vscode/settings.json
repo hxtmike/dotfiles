@@ -10,10 +10,12 @@
         "lazygit",
         "lazyvim",
         "localrc",
+        "msstore",
         "pgsql",
         "pylint",
         "rmds",
         "softwareupdate",
-        "vimrc"
+        "vimrc",
+        "winget"
     ]
 }
