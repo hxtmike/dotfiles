@@ -28,8 +28,8 @@ for dir repo in ${(kv)dirs_to_repos}; do
 	echo ${BASEDIR} $repo $dir
     if [ -e "$dir" ] || [ -L "$dir" ]; then
         rm -rf "$dir"
-        echo "Removed $dir"
+        echo "🗑️Removed $dir"
     fi
     ln -s "${BASEDIR}"/"$repo" "$dir"
+    echo "🔗Created symlink for $dir"
 done
-

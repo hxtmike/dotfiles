@@ -36,7 +36,7 @@
 
     // Editor
     "editor.tabSize": 4,
-    "editor.fontFamily": "Fira Code",
+    "editor.fontFamily": "FiraMono Nerd Font Mono",
     "editor.fontLigatures": false,
     "editor.fontWeight": "450",
     "editor.minimap.enabled": true,
@@ -60,7 +60,7 @@
 
     // Terminal
     "terminal.integrated.tabs.enabled": false,
-    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.integrated.fontFamily": "FiraMono Nerd Font Mono",
     "terminal.integrated.cursorStyle": "block",
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.customGlyphs": true,

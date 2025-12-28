@@ -2,7 +2,7 @@
 # the script has to be run in the terminal/powershell
     # as "administrator" and,
     # in the directory of the script
-# when two requirements fullfiled, run command 'powershell -ExecutionPolicy Bypass -File "./wsl3.ps1"'
+# when two requirements fullfiled, run command 'powershell -ExecutionPolicy Bypass -File "./wsl.4.pwsh_script_in_wsl_env.ps1"'
 
 if (-not (Test-Path -Path "$env:APPDATA\Code\User")) {
     New-Item -ItemType Directory -Path "$env:APPDATA\Code\User" | Out-Null
