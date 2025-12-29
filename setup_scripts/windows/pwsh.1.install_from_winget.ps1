@@ -9,12 +9,14 @@ winget install --id vim.vim -e --source winget
 winget install --id Neovim.Neovim -e --source winget
     ## to be continued: vim/nvim for an example here
     ## for full dev environment setup, please refer similar Brewfile in macOS setup_scripts/mac/ folder
-    ## e.g. winget install --id junegunn.fzf -e --source winget
-    ## more: the setting in the proflie need to be updated. like .zshrc in macOS
+    ## 1. cli commands e.g. winget install --id junegunn.fzf -e --source winget
+    ## 2. Symlink to files other than profile/zshrc e.g. vim/nvim
+    ## 3. inside more setting in the proflie need to be updated. like .zshrc in macOS
         ## all alias for l, cd, etc
         ## fzf auto-completion setup
         ## all custom functions cl(), etc
-        ## auto update from winget
+        ## auto update from winget # done
+        ## fastfetch # done
 
 # install oh-my-posh
 winget install JanDeDobbeleer.OhMyPosh --source winget # special
