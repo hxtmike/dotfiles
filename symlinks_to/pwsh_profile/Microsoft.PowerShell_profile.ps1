@@ -1,3 +1,4 @@
+# note this link has to be in windows file system
 oh-my-posh init pwsh | Invoke-Expression
 
 function updates_all {
