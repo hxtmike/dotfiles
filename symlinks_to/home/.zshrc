@@ -258,6 +258,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
         brew update
         echo "⬆️ Upgrading packages..."
         brew upgrade
+        echo "📦 Upgrading cask apps..."
+        brew upgrade --cask --greedy
         echo "🧹 Cleaning up..."
         brew cleanup
         echo "$today" > "$stamp"
