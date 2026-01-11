@@ -16,6 +16,8 @@ dirs_to_repos=(
     ["$HOME/.p10k.zsh"]="home/.p10k.zsh"
     ["$HOME/.vimrc"]="home/.vimrc"
 
+    ["$HOME/.vim"]=".vim"
+
     ["$HOME/.config/direnv"]=".config/direnv"
     ["$HOME/.config/tmux"]=".config/tmux"
     ["$HOME/.config/nvim"]=".config/nvim"
@@ -28,8 +30,8 @@ for dir repo in ${(kv)dirs_to_repos}; do
 	echo ${BASEDIR} $repo $dir
     if [ -e "$dir" ] || [ -L "$dir" ]; then
         rm -rf "$dir"
-        echo "🗑️Removed $dir"
+        echo "🗑️ Removed $dir"
     fi
     ln -s "${BASEDIR}"/"$repo" "$dir"
-    echo "🔗Created symlink for $dir"
+    echo "🔗 Created symlink for $dir"
 done

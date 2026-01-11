@@ -25,6 +25,12 @@ set softtabstop=4
 
     " Line number
 
+colorscheme monokai
+highlight Normal guibg=NONE ctermbg=NONE
+highlight EndOfBuffer guibg=NONE ctermbg=NONE
+highlight NonText guibg=NONE ctermbg=NONE
+highlight LineNr guibg=NONE ctermbg=NONE
+highlight SignColumn guibg=NONE ctermbg=NONE
 set number
 
 augroup numbertoggle

@@ -241,6 +241,10 @@ rmds() {
     rm -f .DS_Store
 }
 
+link_envrc() {
+    ln -s ~/.config/direnv/.envrc ./.envrc
+}
+
 c() {
     if [ -z "$1" ]; then
         echo "project name cannot be empty"
