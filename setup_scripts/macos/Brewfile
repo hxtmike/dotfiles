@@ -19,6 +19,7 @@ brew "ruff"             # Python linter
 brew "direnv"           # Environment variable management
 brew "tmux"             # Terminal multiplexer
 brew "rust"
+brew "pre-commit"
 
 # neovim related
 brew "neovim"           # Text editor
