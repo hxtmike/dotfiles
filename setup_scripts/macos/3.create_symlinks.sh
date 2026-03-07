@@ -21,6 +21,9 @@ dirs_to_repos=(
     ["$HOME/.config/direnv"]=".config/direnv"
     ["$HOME/.config/tmux"]=".config/tmux"
     ["$HOME/.config/nvim"]=".config/nvim"
+    ["$HOME/.config/cspell/universal-dict.txt"]=".config/cspell/universal-dict.txt"
+
+    ["$HOME/.claude/CLAUDE.md"]=".claude/CLAUDE.md"
 
     ["$HOME/Library/Application Support/Code/User/settings.json"]="vscode/settings.json"
     ["$HOME/Library/Application Support/Code/User/keybindings.json"]="vscode/keybindings.json"
@@ -33,5 +36,5 @@ for dir repo in ${(kv)dirs_to_repos}; do
         echo "🗑️ Removed $dir"
     fi
     ln -s "${BASEDIR}"/"$repo" "$dir"
-    echo "🔗 Created symlink for $dir"
+    echo "🔗  Created symlink for $dir \n"
 done

@@ -40,5 +40,3 @@ if [ ! -f "$NVIM_CONFIG_DIR/init.lua" ] || ! grep -q "LazyVim" "$NVIM_CONFIG_DIR
 fi
 
 echo "✅ Setup complete!"
-
-# sudo ln -s /opt/homebrew/bin/claude ~/.local/bin/claude

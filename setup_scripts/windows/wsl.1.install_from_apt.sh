@@ -96,7 +96,4 @@ if ! command -v tree-sitter &> /dev/null; then
     sudo apt install tree-sitter-cli
 fi
 
-# claude code
-curl -fsSL https://claude.ai/install.sh | bash
-
 touch ~/.localrc

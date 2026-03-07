@@ -1,0 +1,22 @@
+# universal dict
+
+#
+dotenv
+Monokai
+
+#
+plotlyjs
+
+#
+colname
+colnames
+
+#
+bordercolor
+borderwidth
+direnv
+linecolor
+rsuffix
+showline
+xaxis
+yaxi

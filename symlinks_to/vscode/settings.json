@@ -1,5 +1,5 @@
 {
-    "window.zoomLevel": -2,
+    "window.zoomLevel": -1,
     "search.showLineNumbers": true,
     "security.workspace.trust.untrustedFiles": "newWindow",
     "interactiveWindow.executeWithShiftEnter": true,
@@ -14,9 +14,7 @@
         // font
         // disable aliasing in Mac
     // "workbench.fontAliasing": "antialiased",
-    "workbench.editorAssociations": {
-        "file:/**/*.csv": "jupyter-data-wrangler"
-    },
+    "workbench.editorAssociations": {},
     "workbench.editor.showTabIndex": true,
 
     // material icon theme
@@ -189,32 +187,31 @@
     "github.copilot.nextEditSuggestions.enabled": true,
 
     // Spell Checker
-    "cSpell.userWords": [
-        "Analyser",
-        "blackbox",
-        "bordercolor",
-        "borderwidth",
-        "colname",
-        "colnames",
-        "dotenv",
-        "dtutils",
-        "Fira",
-        "ipynb",
-        "lightcoral",
-        "linecolor",
-        "localtools",
-        "Monokai",
-        "mypy",
-        "plotlyjs",
-        "pycache",
-        "qstring",
-        "showline",
-        "venv",
-        "xaxis",
-        "yaxis"
+    "cSpell.customDictionaries": {
+        "universal-dict": {
+            "name": "universal-dict",
+            "path": "${userHome}/.config/cspell/universal-dict.txt",
+            "description": "universal dictionary",
+            "addWords": true
+        },
+        "local-dict": {
+            "name": "local-dict",
+            "path": "${userHome}/.config/cspell/local-dict.txt",
+            "description": "local dictionary",
+            "addWords": true
+        }
+    },
+    "cSpell.dictionaries": [
+        "python", "python-common",
+        "data-science", "data-science-models", "data-science-tools",
+        "rust", "rust-crates",
+        "sql", "docker", "git",
+        "software-term-suggestions", "softwareTerms", "software-tools",
+        "networking-terms", "web-services", "computing-acronyms", "coding-compound-terms",
+        "companies"
     ],
-    "terminal.integrated.tabs.location": "left",
-    "docker.extension.enableComposeLanguageServer": false,
-    "scm.compactFolders": false,
-    "claudeCode.preferredLocation": "panel"
+    "cSpell.import": ["https://cdn.jsdelivr.net/npm/@cspell/dict-en-gb@5/cspell-ext.json"],
+    "cSpell.language": "en-GB",
+    // others
+    "chat.viewSessions.orientation": "stacked"
 }

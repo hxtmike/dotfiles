@@ -19,7 +19,7 @@ brew "ruff"             # Python linter
 brew "direnv"           # Environment variable management
 brew "tmux"             # Terminal multiplexer
 brew "rust"
-brew "pre-commit"
+# brew "pre-commit" # there is a problem with python version
 
 # neovim related
 brew "neovim"           # Text editor
@@ -39,5 +39,7 @@ cask "docker-desktop"
 # cask "chatgpt" switch to just use atlas
 
 # experimental / optional
+cask "claude"
 cask "chatgpt-atlas"
 cask "codex"
+cask "displaylink" # for multi screen
