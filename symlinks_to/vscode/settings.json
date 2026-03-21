@@ -40,7 +40,7 @@
     "editor.minimap.enabled": true,
     "editor.wordWrap": "on",
     "editor.lineNumbers": "relative",
-    "editor.rulers": [80,120],
+    "editor.rulers": [80,110],
     "editor.stickyScroll.enabled": true,
     "editor.renderWhitespace": "all",
     "editor.detectIndentation": true,
@@ -157,6 +157,21 @@
         {
             "before": ["<space>", "<space>"],
             "after": ["<leader>", "<leader>"]
+        },
+          // 文件搜索 (类似 Telescope find_files)
+        {
+            "before": ["<leader>", "f", "f"],
+            "commands": ["workbench.action.quickOpen"]
+        },
+        // 全局内容搜索 (类似 Telescope live_grep)
+        {
+            "before": ["<leader>", "f", "g"],
+            "commands": ["workbench.action.findInFiles"]
+        },
+        // 当前文件符号搜索 (类似 Telescope lsp_document_symbols)
+        {
+            "before": ["<leader>", "f", "s"],
+            "commands": ["workbench.action.gotoSymbol"]
         }
     ],
 
@@ -213,5 +228,6 @@
     "cSpell.import": ["https://cdn.jsdelivr.net/npm/@cspell/dict-en-gb@5/cspell-ext.json"],
     "cSpell.language": "en-GB",
     // others
-    "chat.viewSessions.orientation": "stacked"
+    "chat.viewSessions.orientation": "stacked",
+    "docker.extension.enableComposeLanguageServer": false
 }

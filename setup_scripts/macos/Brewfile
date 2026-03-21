@@ -36,10 +36,11 @@ cask "deepl"
 cask "grammarly-desktop"
 cask "claude-code"
 cask "docker-desktop"
+cask "codex"
 # cask "chatgpt" switch to just use atlas
 
 # experimental / optional
-cask "claude"
 cask "chatgpt-atlas"
 cask "codex"
 cask "displaylink" # for multi screen
+cask "claude" # for multi screen

@@ -1,22 +1,37 @@
 # universal dict
 
-#
-dotenv
+# theme
+Fira
 Monokai
 
-#
-plotlyjs
+# cli tools
+direnv
+envrc
 
-#
+# python
+docstrings
+dotenv
+ipynb
+mypy
+plotlyjs
+pycache
+venv
+
+# data
 colname
 colnames
 
-#
+# graph related
+addopts
 bordercolor
 borderwidth
-direnv
+floatfmt
 linecolor
+nbinsx
 rsuffix
+showlegend
 showline
+testpaths
+vline
 xaxis
-yaxi
+yaxis
