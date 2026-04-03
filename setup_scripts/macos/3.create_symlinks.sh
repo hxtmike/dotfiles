@@ -24,6 +24,7 @@ dirs_to_repos=(
     ["$HOME/.config/cspell/universal-dict.txt"]=".config/cspell/universal-dict.txt"
 
     ["$HOME/.claude/CLAUDE.md"]=".claude/CLAUDE.md"
+    ["$HOME/.claude/skills"]=".claude/skills"
 
     ["$HOME/Library/Application Support/Code/User/settings.json"]="vscode/settings.json"
     ["$HOME/Library/Application Support/Code/User/keybindings.json"]="vscode/keybindings.json"

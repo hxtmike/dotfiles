@@ -78,6 +78,11 @@ Always use these instead of the traditional counterparts:
 - `btop` instead of `top`
 - `fzf` for fuzzy finding/filtering
 
+### Working Directory Reset
+
+The Claude Code Bash tool resets the working directory to the primary project directory between every tool call. cd does not persist across calls.
+Fix: Always use git -C /absolute/path/to/repo when operating on a repo other than the primary working directory.  Never rely on cd persisting.
+
 ## Testing
 
 (To be added)

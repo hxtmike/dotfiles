@@ -229,5 +229,8 @@
     "cSpell.language": "en-GB",
     // others
     "chat.viewSessions.orientation": "stacked",
-    "docker.extension.enableComposeLanguageServer": false
+    "docker.extension.enableComposeLanguageServer": false,
+    "[csv]": {
+        "editor.inlayHints.maximumLength": 0
+    }
 }

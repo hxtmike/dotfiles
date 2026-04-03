@@ -12,10 +12,11 @@ envrc
 docstrings
 dotenv
 ipynb
-mypy
-plotlyjs
 pycache
 venv
+mypy
+plotlyjs
+aiometer
 
 # data
 colname

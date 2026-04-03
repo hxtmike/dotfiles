@@ -178,10 +178,6 @@ alias l='la --no-user --no-permissions'
 alias ls='l'
 alias lt='l --tree --level=2 | head -100'
 
-# zoxide
-eval "$(zoxide init zsh)"
-alias cd='z'
-
 # fzf
 # Add fzf if used as a git pager
 if [[ -d "$HOME/.fzf/bin" ]]; then
@@ -328,6 +324,10 @@ fi
 
 # load this script to have some local alias/functions
 source ~/.localrc
+
+# zoxide
+eval "$(zoxide init zsh)"
+alias cd='z'
 
 updates_all
 
