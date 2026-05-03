@@ -12,6 +12,7 @@ brew "ripgrep"          # grep replacement
 brew "btop"             # top replacement
 brew "fastfetch"        # neofetch replacement
 brew "fzf"              # fuzzy finder
+brew "jq"               # JSON processor
 
 # Development tools
 brew "uv"               # Python package installer
@@ -33,14 +34,14 @@ cask "font-fira-mono-nerd-font"
 cask "google-chrome"
 cask "visual-studio-code"
 cask "deepl"
+cask "ghostty"
 cask "grammarly-desktop"
 cask "claude-code"
 cask "docker-desktop"
-cask "codex"
-# cask "chatgpt" switch to just use atlas
 
 # experimental / optional
+cask "displaylink" # for multi screen
 cask "chatgpt-atlas"
 cask "codex"
-cask "displaylink" # for multi screen
 cask "claude" # for multi screen
+cask "chatgpt" # switch to just use atlas

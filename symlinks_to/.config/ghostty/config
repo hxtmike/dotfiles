@@ -2,7 +2,7 @@ theme = Monokai Classic
 
 macos-non-native-fullscreen = true
 maximize = true
-window-padding-y = 24
+window-padding-y = 24,0
 
 font-family = FiraMono Nerd Font Mono
 font-size = 11
