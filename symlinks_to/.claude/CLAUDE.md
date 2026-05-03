@@ -3,6 +3,7 @@
 ## Most Important Thing
 
 - After completing each task, always end your response with: "[🔥事毕🔥]"
+- Always respond in Chinese or English only.
 
 ## File Operation Permissions
 
@@ -26,6 +27,13 @@
 - Use ruff (managed by uv) for linting and formatting
 - Max line length: **110 characters**
 - Write comments and docstrings in **British English (en-GB)**
+- Do not reassign variable names within a function (no shadowing or reuse)
+- Avoid unnecessary intermediate variables; assign only when it aids clarity or reuse
+- Before giving the final response on any coding task, **resolve all ruff and Pylance errors** in modified files
+
+#### Pandas
+
+- Prefer **method chaining** over intermediate assignments
 
 ### SQL
 
@@ -76,6 +84,7 @@ Always use these instead of the traditional counterparts:
 - `eza` instead of `ls`
 - `zoxide` (`z`) instead of `cd`
 - `btop` instead of `top`
+- `jq` for json processing
 - `fzf` for fuzzy finding/filtering
 
 ### Working Directory Reset
