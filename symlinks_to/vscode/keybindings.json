@@ -111,5 +111,20 @@
             "text": "\\\r\n"
         },
         "when": "terminalFocus"
+    },
+    {
+        "key": "space f p",
+        "command": "workbench.action.openRecent",
+        "when": "vim.mode == 'Normal' && !terminalFocus"
+    },
+    {
+        "key": "space f f",
+        "command": "workbench.action.quickOpen",
+        "when": "vim.mode == 'Normal' && !terminalFocus"
+    },
+    {
+        "key": "space f g",
+        "command": "workbench.action.findInFiles",
+        "when": "vim.mode == 'Normal' && !terminalFocus"
     }
 ]
