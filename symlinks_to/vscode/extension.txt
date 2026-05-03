@@ -3,8 +3,6 @@ charliermarsh.ruff
 christian-kohler.path-intellisense
 davidanson.vscode-markdownlint
 docker.docker
-github.copilot
-github.copilot-chat
 mechatroner.rainbow-csv
 mhutchie.git-graph
 ms-azuretools.vscode-containers

@@ -1,7 +1,7 @@
 # Brewfile for macOS setup
 
-# Taps
-tap "homebrew/cask-fonts"
+# Fonts
+cask "font-fira-mono-nerd-font"
 
 # CLI tools - Modern replacements
 brew "bat"              # cat replacement with syntax highlighting
@@ -20,15 +20,13 @@ brew "ruff"             # Python linter
 brew "direnv"           # Environment variable management
 brew "tmux"             # Terminal multiplexer
 brew "rust"
+brew "starship"
 # brew "pre-commit" # there is a problem with python version
 
 # neovim related
 brew "neovim"           # Text editor
 brew "lazygit"          # mainly for lazyvim
 brew "tree-sitter-cli"  # mainly for lazyvim
-
-# Fonts
-cask "font-fira-mono-nerd-font"
 
 # Applications
 cask "google-chrome"
@@ -41,7 +39,6 @@ cask "docker-desktop"
 
 # experimental / optional
 cask "displaylink" # for multi screen
-cask "chatgpt-atlas"
 cask "codex"
-cask "claude" # for multi screen
+cask "claude"
 cask "chatgpt" # switch to just use atlas

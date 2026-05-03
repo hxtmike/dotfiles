@@ -233,5 +233,6 @@
     "docker.extension.enableComposeLanguageServer": false,
     "[csv]": {
         "editor.inlayHints.maximumLength": 0
-    }
+    },
+    "terminal.integrated.mouseWheelScrollSensitivity": 3
 }

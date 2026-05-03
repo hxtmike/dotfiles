@@ -5,6 +5,11 @@ if [ ! -d "$HOME/Library/Application Support/Code/User/" ]; then
     mkdir -p "$HOME/Library/Application Support/Code/User/"
 fi
 
+if [ ! -d "$HOME/.config/cspell" ]; then
+    mkdir -p "$HOME/.config/cspell/"
+fi
+
+
 BASEDIR="$(cd "$(dirname "$0")" && cd ../.. && pwd)/symlinks_to"
 
 typeset -A dirs_to_repos
@@ -13,7 +18,6 @@ dirs_to_repos=(
     ["$HOME/.zsh"]="home/.zsh"
     ["$HOME/.zshrc"]="home/.zshrc"
     ["$HOME/.zprofile"]="home/.zprofile"
-    ["$HOME/.p10k.zsh"]="home/.p10k.zsh"
     ["$HOME/.vimrc"]="home/.vimrc"
     ["$HOME/.vim"]=".vim"
 
@@ -24,6 +28,8 @@ dirs_to_repos=(
     ["$HOME/.config/ghostty"]=".config/ghostty"
     ["$HOME/Library/Application Support/com.mitchellh.ghostty/config"]=".config/ghostty/config"
 
+    ["$HOME/.config/starship.toml"]=".config/starship.toml"
+
     ["$HOME/.claude/CLAUDE.md"]=".claude/CLAUDE.md"
     ["$HOME/.claude/settings.json"]=".claude/settings.json"
     ["$HOME/.claude/skills"]=".claude/skills"
@@ -31,8 +37,6 @@ dirs_to_repos=(
     ["$HOME/Library/Application Support/Code/User/settings.json"]="vscode/settings.json"
     ["$HOME/Library/Application Support/Code/User/keybindings.json"]="vscode/keybindings.json"
     ["$HOME/.config/cspell/universal-dict.txt"]=".config/cspell/universal-dict.txt"
-
-    ["$HOME/.config/starship.toml"]=".config/starship.toml"
 )
 
 for dir repo in ${(kv)dirs_to_repos}; do
