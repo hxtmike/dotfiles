@@ -1,3 +1,13 @@
 test.py
 /vscode/cSpell.json
 .DS_Store
+
+# Credentials and secrets
+.env*
+*.pem
+*.key
+*.pub
+*secret*
+*credential*
+*_token*
+service_account.json
