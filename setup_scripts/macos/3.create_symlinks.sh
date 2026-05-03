@@ -15,19 +15,24 @@ dirs_to_repos=(
     ["$HOME/.zprofile"]="home/.zprofile"
     ["$HOME/.p10k.zsh"]="home/.p10k.zsh"
     ["$HOME/.vimrc"]="home/.vimrc"
-
     ["$HOME/.vim"]=".vim"
 
     ["$HOME/.config/direnv"]=".config/direnv"
     ["$HOME/.config/tmux"]=".config/tmux"
     ["$HOME/.config/nvim"]=".config/nvim"
-    ["$HOME/.config/cspell/universal-dict.txt"]=".config/cspell/universal-dict.txt"
+
+    ["$HOME/.config/ghostty"]=".config/ghostty"
+    ["$HOME/Library/Application Support/com.mitchellh.ghostty/config"]=".config/ghostty/config"
 
     ["$HOME/.claude/CLAUDE.md"]=".claude/CLAUDE.md"
+    ["$HOME/.claude/settings.json"]=".claude/settings.json"
     ["$HOME/.claude/skills"]=".claude/skills"
 
     ["$HOME/Library/Application Support/Code/User/settings.json"]="vscode/settings.json"
     ["$HOME/Library/Application Support/Code/User/keybindings.json"]="vscode/keybindings.json"
+    ["$HOME/.config/cspell/universal-dict.txt"]=".config/cspell/universal-dict.txt"
+
+    ["$HOME/.config/starship.toml"]=".config/starship.toml"
 )
 
 for dir repo in ${(kv)dirs_to_repos}; do
