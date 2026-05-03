@@ -11,10 +11,11 @@ function updates_all {
             return
         }
     }
+    # Mark as run upfront so interruptions don't trigger a retry the same day
+    $today | Set-Content $stamp
     Write-Host "📦 Updating Winget packages..."
     winget upgrade --all --accept-source-agreements
     Write-Host "🧹 Cleaning up..."
-    $today | Set-Content $stamp
     Write-Host "✅ done"
 }
 

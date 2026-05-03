@@ -1,5 +1,9 @@
 # universal dict
 
+# abbreviation
+creds
+incl
+
 # theme
 Fira
 Monokai
@@ -7,20 +11,31 @@ Monokai
 # cli tools
 direnv
 envrc
+starship
+vimcmd
+
+# software
+postico
+snowsql
+teamviewer
+fastfetch
+ghostty
+Gsheets
 
 # python
+aiometer
 docstrings
 dotenv
 ipynb
-pycache
-venv
 mypy
 plotlyjs
-aiometer
+pycache
+venv
 
 # data
 colname
 colnames
+rawfile
 
 # graph related
 addopts
@@ -33,6 +48,17 @@ rsuffix
 showlegend
 showline
 testpaths
+tunnelblick
+twingate
+unnormalised
 vline
 xaxis
 yaxis
+figsize
+gridcolor
+showgrid
+xanchor
+xaxes
+yaxes
+
+# unclassified
