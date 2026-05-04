@@ -224,7 +224,7 @@ zle-keymap-select() {
 zle -N zle-keymap-select
 
 # load this script to have some local alias/functions
-source ~/.localrc
+source ~/.config/zsh/.localrc
 
 # zoxide
 eval "$(zoxide init zsh)"

@@ -9,6 +9,10 @@ if [ ! -d "$HOME/.config/cspell" ]; then
     mkdir -p "$HOME/.config/cspell/"
 fi
 
+if [ ! -d "$HOME/.config/zsh" ]; then
+    mkdir -p "$HOME/.config/zsh"
+fi
+
 
 BASEDIR="$(cd "$(dirname "$0")" && cd ../.. && pwd)/symlinks_to"
 
