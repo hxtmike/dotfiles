@@ -33,6 +33,14 @@ dirs_to_repos=(
     ["$HOME/.config/starship.toml"]=".config/starship.toml"
     ["$HOME/.config/cspell/universal-dict.txt"]=".config/cspell/universal-dict.txt"
 
+    # Zsh config modules
+    ["$HOME/.config/zsh/omz.zsh"]=".config/zsh/omz.zsh"
+    ["$HOME/.config/zsh/aliases.zsh"]=".config/zsh/aliases.zsh"
+    ["$HOME/.config/zsh/functions.zsh"]=".config/zsh/functions.zsh"
+    ["$HOME/.config/zsh/fzf.zsh"]=".config/zsh/fzf.zsh"
+    ["$HOME/.config/zsh/pkg_update.zsh"]=".config/zsh/pkg_update.zsh"
+    ["$HOME/.config/zsh/vi_mode.zsh"]=".config/zsh/vi_mode.zsh"
+
     # Ghostty terminal — requires both the XDG config dir and the legacy app support path
     ["$HOME/.config/ghostty"]=".config/ghostty"
     ["$HOME/Library/Application Support/com.mitchellh.ghostty/config"]=".config/ghostty/config"
