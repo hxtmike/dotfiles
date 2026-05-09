@@ -56,3 +56,8 @@ for dir repo in ${(kv)dirs_to_repos}; do
     ln -s "${BASEDIR}"/"$repo" "$dir"
     echo "🔗  Created symlink for $dir \n"
 done
+
+# create localrc file
+if [ ! -f ~/.config/zsh/.localrc ]; then
+    touch ~/.config/zsh/.localrc
+fi
