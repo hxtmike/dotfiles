@@ -3,11 +3,11 @@
 format = """
 [](red)\
 $os\
+$time\
 [](bg:peach fg:red)\
 $directory\
 [](bg:yellow fg:peach)\
-$git_branch\
-$git_status\
+$direnv\
 [](fg:yellow bg:green)\
 $c\
 $rust\
@@ -20,11 +20,11 @@ $kotlin\
 $haskell\
 $python\
 [](fg:green bg:sapphire)\
-$direnv\
+$git_branch\
+$git_status\
 [](fg:sapphire bg:lavender)\
-$time\
-[ ](fg:lavender)\
 $cmd_duration\
+[ ](fg:lavender)\
 $jobs\
 $status\
 $line_break\
@@ -59,6 +59,13 @@ Debian = "󰣚"
 Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
 
+[time]
+disabled = false
+time_format = "%R "
+style = "bg:red"
+format = '[  $time](bg:red fg:crust)($style)'
+
+
 [username]
 show_always = true
 style_user = "bg:red fg:crust"
@@ -76,16 +83,13 @@ truncation_symbol = "…/"
 "Downloads" = " "
 "Music" = "󰝚 "
 "Pictures" = " "
-"Developer" = "󰲋 "
+"Development" = "󰲋 "
 
-[git_branch]
-symbol = ""
+[direnv]
+disabled = false
 style = "bg:yellow"
-format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
-
-[git_status]
-style = "bg:yellow"
-format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
+format = '[[ $symbol .env ](fg:crust bg:yellow)]($style)'
+symbol = "󰐣"
 
 [nodejs]
 symbol = ""
@@ -143,25 +147,30 @@ symbol = ""
 style = "bg:sapphire"
 format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
 
+[git_branch]
+symbol = ""
+style = "bg:sapphire"
+format = '[[ $symbol $branch ](fg:crust bg:sapphire)]($style)'
 
-[time]
-disabled = false
-time_format = "%R"
+[git_status]
+style = "bg:sapphire"
+format = '[[($all_status$ahead_behind )](fg:crust bg:sapphire)]($style)'
+
+[cmd_duration]
+show_milliseconds = true
+format = '[[  $duration ](fg:crust bg:lavender)]($style)'
 style = "bg:lavender"
-format = '[  $time](fg:crust bg:lavender)($style)'
-
-[status]
 disabled = false
-format = '[✘ $status](bold fg:red) '
+show_notifications = true
+min_time = 1000
+min_time_to_notify = 30000
 
 [jobs]
 format = '[󰔟 $number](bold fg:yellow) '
 
-[direnv]
+[status]
 disabled = false
-style = "bg:sapphire"
-format = '[[ $symbol .env ](fg:crust bg:sapphire)]($style)'
-symbol = "󰐣"
+format = '[✘ $status](bold fg:red) '
 
 [line_break]
 disabled = true
@@ -174,15 +183,6 @@ vimcmd_symbol = '[❮](bold fg:green)'
 vimcmd_replace_one_symbol = '[❮](bold fg:lavender)'
 vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
-
-[cmd_duration]
-show_milliseconds = true
-format = " in $duration "
-style = "bg:lavender"
-disabled = false
-show_notifications = true
-min_time_to_notify = 45000
-
 
 [palettes.monokai]
 red      = "#F92672"

@@ -21,7 +21,7 @@ brew "direnv"           # Environment variable management
 brew "tmux"             # Terminal multiplexer
 brew "rust"
 brew "starship"
-# brew "pre-commit" # there is a problem with python version
+brew "pre-commit" 
 
 # neovim related
 brew "neovim"           # Text editor
