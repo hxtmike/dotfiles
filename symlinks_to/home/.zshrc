@@ -20,8 +20,8 @@ source $ZSH/oh-my-zsh.sh
 fpath=(/Users/xiaotianhan/.docker/completions $fpath)
 # End of Docker CLI completions
 
-# Load env if available
-source "$HOME/.local/bin/env"
+# Load uv env script if installed via official installer (not needed for Homebrew installs)
+[[ -f "$HOME/.local/bin/env" ]] && source "$HOME/.local/bin/env"
 
 # uv related
 eval "$(uv generate-shell-completion zsh)"
@@ -157,20 +157,7 @@ compdef _dev_project_completion c
 compdef _dev_project_completion nv
 
 if [[ "$(uname)" == "Darwin" ]]; then
-    updates_all() {
-        local stamp="$HOME/.last_update"
-        local today=$(date +%Y-%m-%d)
-
-        if [[ -f "$stamp" ]]; then
-            local last_date=$(cat -pp "$stamp")
-            if [[ "$last_date" == "$today" ]]; then
-            echo "🍺 Homebrew already updated today"
-            return
-            fi
-        fi
-
-        # Mark as run upfront so interruptions don't trigger a retry the same day
-        echo "$today" > "$stamp"
+    pkg_update() {
         echo "🍺 Updating Homebrew..."
         brew update
         echo "⬆️ Upgrading packages..."
@@ -182,20 +169,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
         echo "✅ done"
     }
 elif grep -qiE "microsoft|wsl" /proc/version &> /dev/null; then
-    updates_all() {
-        local stamp="$HOME/.last_update"
-        local today=$(date +%Y-%m-%d)
-
-        if [[ -f "$stamp" ]]; then
-            local last_date=$(cat "$stamp")
-            if [[ "$last_date" == "$today" ]]; then
-                echo "📦 APT already updated today"
-                return
-            fi
-        fi
-
-        # Mark as run upfront so interruptions don't trigger a retry the same day
-        echo "$today" > "$stamp"
+    pkg_update() {
         echo "📦 Updating APT cache..."
         sudo apt update
         echo "⬆️ Upgrading packages..."
@@ -205,8 +179,24 @@ elif grep -qiE "microsoft|wsl" /proc/version &> /dev/null; then
         sudo apt autoclean -y
         echo "✅ done"
     }
-
 fi
+
+pkg_update_daily() {
+    local stamp="$HOME/.last_update_ts"
+    local today=$(date +%Y-%m-%d)
+
+    if [[ -f "$stamp" ]]; then
+        local last_date=$(cat "$stamp")
+        if [[ "$last_date" == "$today" ]]; then
+            echo "Already updated today"
+            return
+        fi
+    fi
+
+    # Mark as run upfront so interruptions don't trigger a retry the same day
+    echo "$today" > "$stamp"
+    pkg_update
+}
 
 
 
@@ -234,7 +224,7 @@ alias cd='z'
 add-zsh-hook precmd _set_bar_cursor
 _set_bar_cursor() { printf '\e[6 q' }
 
-updates_all
+pkg_update_daily
 
 if [[ -o interactive ]]; then
     clear
