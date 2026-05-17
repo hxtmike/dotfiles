@@ -9,3 +9,6 @@ if [[ $(uname) == "Darwin" ]]; then
     export "C_INCLUDE_PATH=/usr/local/include"
     export "LIBRARY_PATH=/usr/local/lib"
 fi
+
+# uv installs tool executables (e.g. ruff, pytest) here
+export PATH="$HOME/.local/bin:$PATH"
