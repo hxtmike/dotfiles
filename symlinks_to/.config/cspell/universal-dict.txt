@@ -3,6 +3,7 @@
 # abbreviation
 creds
 incl
+timespec
 
 # theme
 Fira
@@ -15,12 +16,12 @@ starship
 vimcmd
 
 # software
-postico
-snowsql
-teamviewer
 fastfetch
 ghostty
 Gsheets
+postico
+snowsql
+teamviewer
 
 # python
 aiometer
@@ -41,10 +42,13 @@ rawfile
 addopts
 bordercolor
 borderwidth
+figsize
 floatfmt
+gridcolor
 linecolor
 nbinsx
 rsuffix
+showgrid
 showlegend
 showline
 testpaths
@@ -52,13 +56,10 @@ tunnelblick
 twingate
 unnormalised
 vline
-xaxis
-yaxis
-figsize
-gridcolor
-showgrid
 xanchor
 xaxes
+xaxis
 yaxes
+yaxis
 
 # unclassified
