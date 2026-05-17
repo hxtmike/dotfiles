@@ -87,6 +87,10 @@ Always use these instead of the traditional counterparts:
 - `jq` for json processing
 - `fzf` for fuzzy finding/filtering
 
+### Compound Commands
+
+Never use `;` to chain read-only commands into a single Bash call. Instead, issue multiple parallel Bash tool calls. Each individual command matches the allow list; compound commands do not, causing unnecessary permission prompts.
+
 ### Working Directory Reset
 
 The Claude Code Bash tool resets the working directory to the primary project directory between every tool call. cd does not persist across calls.
