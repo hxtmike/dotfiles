@@ -1,6 +1,7 @@
 # universal dict
 
 # abbreviation
+resp
 creds
 incl
 timespec
