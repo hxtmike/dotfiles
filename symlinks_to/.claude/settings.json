@@ -47,6 +47,10 @@
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true
   },
+  "statusLine": {
+    "type": "command",
+    "command": "zsh ~/.claude/statusline-command.sh"
+  },
   "hooks": {
     "Stop": [
       {

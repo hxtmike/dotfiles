@@ -49,6 +49,7 @@ dirs_to_repos=(
     ["$HOME/.claude/CLAUDE.md"]=".claude/CLAUDE.md"
     ["$HOME/.claude/settings.json"]=".claude/settings.json"
     ["$HOME/.claude/skills"]=".claude/skills"
+    ["$HOME/.claude/statusline-command.sh"]=".claude/statusline-command.sh"
 
     # VS Code
     ["$HOME/Library/Application Support/Code/User/settings.json"]="vscode/settings.json"
