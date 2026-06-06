@@ -52,7 +52,6 @@ dirs_to_repos=(
     # Claude Code
     ["$HOME/.claude/CLAUDE.md"]=".claude/CLAUDE.md"
     ["$HOME/.claude/settings.json"]=".claude/settings.json"
-    ["$HOME/.claude/skills"]=".claude/skills"
     ["$HOME/.claude/statusline-command.sh"]=".claude/statusline-command.sh"
 
     # VS Code
@@ -68,6 +67,26 @@ for dir repo in ${(kv)dirs_to_repos}; do
     fi
     ln -s "${BASEDIR}"/"$repo" "$dir"
     echo "🔗  Created symlink for $dir \n"
+done
+
+# Claude Code skills: link each skill individually so other (non-repo) skills
+# under ~/.claude/skills are left untouched. ~/.claude/skills must be a real
+# directory, not a folder-symlink — otherwise the per-skill links below would
+# resolve back into the repo and clobber it.
+claude_skills_dir="$HOME/.claude/skills"
+if [ -L "$claude_skills_dir" ]; then
+    rm "$claude_skills_dir"
+    echo "🗑️ Removed folder symlink $claude_skills_dir"
+fi
+mkdir -p "$claude_skills_dir"
+for skill in "${BASEDIR}"/.claude/skills/*(/N); do
+    target="$claude_skills_dir/${skill:t}"
+    if [ -e "$target" ] || [ -L "$target" ]; then
+        rm -rf "$target"
+        echo "🗑️ Removed $target"
+    fi
+    ln -s "$skill" "$target"
+    echo "🔗  Created symlink for $target \n"
 done
 
 # create localrc file
