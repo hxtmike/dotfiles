@@ -1,0 +1,64 @@
+# ~/.visidatarc
+# Exec'd inside VisiData's namespace: `options` and `vd` are injected at runtime
+# and the visidata package is only importable when run by vd, so silence static checks.
+# ruff: noqa: F821
+# pyright: reportUndefinedVariable=false, reportAttributeAccessIssue=false, reportMissingImports=false
+from visidata import vd, Sheet, anytype
+
+# Register a Monokai theme and activate it. Using the theme API (rather than bare
+# options.color_*) is the supported entry point: vd applies the theme at before-run,
+# after the config is read, so these definitively override the built-in defaults.
+# set_theme() unsets every color_/disp_/note_ option before applying the dict, so
+# disp_float_fmt must live INSIDE the theme to survive (xterm256 ≈ Monokai palette).
+vd.themes['monokai'] = dict(
+    disp_float_fmt     = '{:.04f}',
+    color_default_hdr  = 'bold 161',          # column headers   red      #F92672
+    color_current_hdr  = 'bold 161 reverse',  # cursor col header
+    color_key_col      = '80',                # key columns      sapphire #66D9EF
+    color_selected_row = '172',               # selected rows    peach    #FD971F
+    color_current_col  = 'bold on 235',       # cursor column    crust bg #272822
+    color_note_type    = '185',               # type notes       yellow   #E6DB74
+    color_note_row     = '172',               # row notes        peach    #FD971F
+    color_heading      = 'bold 235 on 161',   # status heading   crust on red
+)
+options.theme = 'monokai'
+
+# Auto-detect numeric column types after every load, since disp_float_fmt only
+# applies to float-typed columns and loaders (csv/tsv/...) leave columns untyped.
+# Integer-only columns become int; columns with any decimal/scientific value become float.
+_orig_afterLoad = Sheet.afterLoad
+
+
+def _auto_numeric_types(sheet):
+    rows = getattr(sheet, 'rows', None)
+    cols = getattr(sheet, 'columns', None)
+    if not rows or not cols:
+        return
+    for col in cols:
+        if col.type is not anytype:
+            continue
+        sample = []
+        for row in rows:
+            value = col.getValue(row)
+            if value in (None, ''):
+                continue
+            sample.append(str(value).strip())
+            if len(sample) >= 100:
+                break
+        if not sample:
+            continue
+        try:
+            for value in sample:
+                float(value.replace(',', ''))
+        except (ValueError, TypeError):
+            continue
+        all_int = all(value.lstrip('-').replace(',', '').isdigit() for value in sample)
+        col.type = int if all_int else float
+
+
+def afterLoad(sheet):
+    _orig_afterLoad(sheet)
+    _auto_numeric_types(sheet)
+
+
+Sheet.afterLoad = afterLoad

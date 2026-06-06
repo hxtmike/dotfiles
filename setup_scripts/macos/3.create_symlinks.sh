@@ -33,6 +33,10 @@ dirs_to_repos=(
     ["$HOME/.config/starship.toml"]=".config/starship.toml"
     ["$HOME/.config/cspell/universal-dict.txt"]=".config/cspell/universal-dict.txt"
 
+    # VisiData ignores XDG on macOS, so link the config to the legacy fallback
+    # path it always reads regardless of shell/env (no VD_CONFIG dependency)
+    ["$HOME/.visidatarc"]="home/.visidatarc"
+
     # Zsh config modules
     ["$HOME/.config/zsh/omz.zsh"]=".config/zsh/omz.zsh"
     ["$HOME/.config/zsh/aliases.zsh"]=".config/zsh/aliases.zsh"
