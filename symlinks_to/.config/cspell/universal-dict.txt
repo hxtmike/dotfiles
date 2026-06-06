@@ -1,9 +1,9 @@
 # universal dict
 
 # abbreviation
-resp
 creds
 incl
+resp
 timespec
 
 # theme
@@ -13,6 +13,8 @@ Monokai
 # cli tools
 direnv
 envrc
+gh
+glab
 starship
 vimcmd
 
@@ -23,9 +25,11 @@ Gsheets
 postico
 snowsql
 teamviewer
+visidata
 
 # python
 aiometer
+anytype
 docstrings
 dotenv
 ipynb
@@ -33,6 +37,10 @@ mypy
 plotlyjs
 pycache
 venv
+
+# pandas
+lsuffix
+rsuffix
 
 # data
 colname
@@ -48,7 +56,6 @@ floatfmt
 gridcolor
 linecolor
 nbinsx
-rsuffix
 showgrid
 showlegend
 showline
@@ -64,3 +71,4 @@ yaxes
 yaxis
 
 # unclassified
+visidata
