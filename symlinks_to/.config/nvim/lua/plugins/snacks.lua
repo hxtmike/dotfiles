@@ -1,12 +1,6 @@
 return {
   "folke/snacks.nvim",
   opts = {
-    terminal = {
-      win = {
-        position = "right",
-        width = 0.35,
-      },
-    },
     -- Explorer 也是基于 picker，所以这里的全局设置会影响它
     picker = {
       hidden = true,   -- 显示以 . 开头的文件
