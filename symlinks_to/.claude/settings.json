@@ -44,13 +44,6 @@
       "Bash(uv pip show:*)"
     ]
   },
-  "enabledPlugins": {
-    "pyright-lsp@claude-plugins-official": true
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "zsh ~/.claude/statusline-command.sh"
-  },
   "hooks": {
     "Stop": [
       {
@@ -74,5 +67,13 @@
         ]
       }
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "zsh ~/.claude/statusline-command.sh"
+  },
+  "model": "claude-opus-4-8",
+  "enabledPlugins": {
+    "pyright-lsp@claude-plugins-official": true
   }
 }
