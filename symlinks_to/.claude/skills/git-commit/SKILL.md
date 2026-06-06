@@ -123,6 +123,88 @@ EOF
 )"
 ```
 
+### 6. Optional Push (with guardrails)
+
+Only run this step when the user explicitly opts in by passing `--push` (or equivalent: `push`, `推送`) as a skill argument. Without that opt-in, stop after step 5.
+
+`--gh-pr` and `--glab-mr` (step 7) **imply `--push`** — if either is passed, run this step first.
+
+Run these checks **in order** and abort on the first failure — do NOT auto-resolve, just report the failure and stop:
+
+1. **Commit must have succeeded** in step 5. If it failed (e.g., pre-commit hook), do not push.
+2. **Protected-branch check**: get the current branch with `git rev-parse --abbrev-ref HEAD`. If it is `main`, `master`, `develop`, `release`, or matches `release/*`, abort and report — never push to a protected branch from this skill.
+3. **Upstream check**: run `git rev-parse --abbrev-ref --symbolic-full-name @{u}` to detect upstream.
+   - If it exists: `git push`
+   - If it does not (exits non-zero): `git push -u origin <current-branch>` to set upstream on first push
+4. **Never** pass `--force`, `--force-with-lease`, or `--no-verify`. If push is rejected (non-fast-forward, hook failure, etc.), stop and report — do not retry with force.
+
+After a successful push, **always** check for an existing PR/MR on the current branch and surface its URL as the **final line of the response**:
+
+- GitHub (if `gh` is available): `gh pr view --json url,state -q '.url'`
+- GitLab (if `glab` is available): `glab mr view --output json | jq -r '.web_url'`
+
+If neither CLI is available, or no PR/MR exists for the branch, report that explicitly along with the push result. If step 7 (PR/MR creation) is going to run next, defer the URL reporting to step 7 instead of duplicating it here.
+
+Report the push result (success, remote URL, or the specific error) to the user, followed by the PR/MR URL when applicable.
+
+### 7. Optional PR/MR Creation (with guardrails)
+
+Only run this step when the user explicitly opts in by passing one of:
+
+- `--gh-pr` (or `gh-pr`, `pr`) → create a GitHub pull request via `gh pr create`
+- `--glab-mr` (or `glab-mr`, `mr`) → create a GitLab merge request via `glab mr create`
+
+Run these checks **in order** and abort on the first failure:
+
+1. **Mutual exclusivity**: `--gh-pr` and `--glab-mr` cannot both be passed. If both, abort and ask the user which one.
+2. **Push must have succeeded** in step 6. If push was skipped or failed, do not create a PR/MR.
+3. **CLI availability**: verify the required tool is installed (`command -v gh` or `command -v glab`). If missing, abort and report.
+4. **Remote sanity check** (best effort): inspect `git remote get-url origin` and warn if it does not match the chosen platform (e.g., `--gh-pr` against a `gitlab.com` remote). Ask the user before proceeding.
+5. **Existing PR/MR check**: before creating, check if one already exists for the current branch:
+   - GitHub: `gh pr view --json url,state` — if it exists and is open, report the URL and stop (do not create a duplicate)
+   - GitLab: `glab mr view` — same behaviour
+6. **Resolve base branch**: detect the default branch with `git symbolic-ref --short refs/remotes/origin/HEAD` (strip the `origin/` prefix). Fall back to `main` then `master` if that fails.
+7. **Count commits on branch**: `git rev-list --count <base>..HEAD`.
+   - **If 1 commit** → use the simple `--fill` path:
+     - GitHub: `gh pr create --fill`
+     - GitLab: `glab mr create --fill --remove-source-branch=false`
+   - **If >1 commits** → synthesize title + body, then pass via `--title` / `--body`:
+     - Read all commits: `git log <base>..HEAD --reverse --pretty=format:'%h %s%n%b%n---'`
+     - **Title**: a single concise line (<72 chars) summarizing the branch's overall change. Prefer a conventional-commit prefix if all commits share the same type/scope; otherwise pick the most descriptive subject and tighten it.
+     - **Body**: use this template:
+
+       ```md
+       ## Summary
+
+       - <bullet per logical change, grouped — not one bullet per commit>
+
+       ## Commits
+
+       - <short-sha> <subject>
+       - ...
+
+       ## Test plan
+
+       - [ ] <derive from the diff: what should be verified manually or in CI>
+       ```
+
+     - Pass via heredoc to preserve formatting:
+
+       ```bash
+       gh pr create --title "<title>" --body "$(cat <<'EOF'
+       <body>
+       EOF
+       )"
+       # or
+       glab mr create --remove-source-branch=false --title "<title>" --description "$(cat <<'EOF'
+       <body>
+       EOF
+       )"
+       ```
+8. **Never** pass `--draft` unless the user explicitly asks, and never pass flags that bypass review (e.g., auto-merge).
+
+**Always** report the resulting PR/MR URL as the **final line of the response**, whether the PR/MR was newly created in this step or already existed (detected in check 5). The URL must be the last thing the user sees, so they can click through immediately.
+
 ## Best Practices
 
 - One logical change per commit
