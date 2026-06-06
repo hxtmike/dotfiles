@@ -24,12 +24,13 @@
 - Use **4 spaces** for indentation
 - Follow **PEP 8** and related official Python standards
 - Keep comments and docstrings **concise and practical**
-- Use ruff (managed by uv) for linting and formatting
 - Max line length: **110 characters**
 - Write comments and docstrings in **British English (en-GB)**
 - Do not reassign variable names within a function (no shadowing or reuse)
 - Avoid unnecessary intermediate variables; assign only when it aids clarity or reuse
-- Before giving the final response on any coding task, **resolve all ruff and Pylance errors** in modified files
+- Use ruff for linting and formatting
+- Use pyright for checking
+- Before giving the final response on any coding task, **resolve all ruff and pyright errors** in modified files (must pass both ruff and pyright checks)
 
 #### Pandas
 
