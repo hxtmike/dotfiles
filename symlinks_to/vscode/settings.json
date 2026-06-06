@@ -129,6 +129,7 @@
         "editor.tabSize": 4,
         "editor.indentSize": 4
     },
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
 
     // data wrangler
     "dataWrangler.outputRenderer.enabledTypes": {
@@ -183,9 +184,9 @@
         // vim-airline feature of VIM EXTENSION!!!
     "workbench.colorCustomizations": {
         "editorRuler.foreground": "#ff4081",
-        "statusBar.background": "#5f00af",
-        "statusBar.noFolderBackground": "#5f00af",
-        "statusBar.debuggingBackground": "#5f00af",
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f",
         "statusBar.foreground": "#ffffff",
         "statusBar.debuggingForeground": "#ffffff"
     },
