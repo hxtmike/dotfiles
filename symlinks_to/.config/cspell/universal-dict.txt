@@ -26,6 +26,7 @@ postico
 snowsql
 teamviewer
 visidata
+gworkspace
 
 # python
 aiometer
@@ -69,6 +70,11 @@ xaxes
 xaxis
 yaxes
 yaxis
+aggfunc
+bargap
+histnorm
+hovertemplate
+yanchor
+yshift
 
 # unclassified
-visidata
