@@ -19,14 +19,15 @@ starship
 vimcmd
 
 # software
+cowork
 fastfetch
 ghostty
 Gsheets
+gworkspace
 postico
 snowsql
 teamviewer
 visidata
-gworkspace
 
 # python
 aiometer
@@ -50,11 +51,15 @@ rawfile
 
 # graph related
 addopts
+aggfunc
+bargap
 bordercolor
 borderwidth
 figsize
 floatfmt
 gridcolor
+histnorm
+hovertemplate
 linecolor
 nbinsx
 showgrid
@@ -68,13 +73,9 @@ vline
 xanchor
 xaxes
 xaxis
+yanchor
 yaxes
 yaxis
-aggfunc
-bargap
-histnorm
-hovertemplate
-yanchor
 yshift
 
 # unclassified
