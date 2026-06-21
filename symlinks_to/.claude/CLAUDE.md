@@ -4,6 +4,7 @@
 
 - After completing each task, always end your response with: "[🔥事毕🔥]"
 - Always respond in Chinese or English only.
+- **Automode is not commit permission.** Even in automode / auto-accept / bypass-permissions, complete the work then **stop before committing**: present the final result (diff or summary) and wait for my explicit approval. Autonomous edits, tests, and tooling are fine; `git commit`/`git push` always need a fresh, explicit go-ahead.
 
 ## File Operation Permissions
 
@@ -76,17 +77,24 @@ Use `AskUserQuestion` tool to explicitly ask user for approval before making add
 
 ## Shell Command Preferences
 
-The following Rust-based CLI tools are installed via Homebrew and aliased in `.zshrc`.
-Always use these instead of the traditional counterparts:
+<!--
+  Deliberately trimmed to only the tools that help an agent in non-interactive Bash.
+  Dropped from the old list and why:
+    - bat / eza : add paging/colour/decoration that pollutes the plain-text output
+                  the agent parses; Read/Glob cover this anyway.
+    - btop / fzf: interactive TUIs that need a human at a TTY — unusable non-interactively.
+    - zoxide (z): relies on a learned dir database, and the Bash tool resets cwd every
+                  call (cd doesn't persist), so jumps are unreliable and pointless here.
+  My terminal still uses the full rust toolset via .zshrc; that's unrelated to this file.
+-->
+
+When dropping to Bash, prefer these over the traditional counterparts:
 
 - `rg` instead of `grep`
 - `fd` instead of `find`
-- `bat` instead of `cat`
-- `eza` instead of `ls`
-- `zoxide` (`z`) instead of `cd`
-- `btop` instead of `top`
-- `jq` for json processing
-- `fzf` for fuzzy finding/filtering
+- `jq` for JSON processing
+
+Note: for reading/searching files, prefer the built-in Read/Grep/Glob tools over shelling out.
 
 ### Compound Commands
 
