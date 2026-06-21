@@ -79,3 +79,4 @@ yaxis
 yshift
 
 # unclassified
+Automode
