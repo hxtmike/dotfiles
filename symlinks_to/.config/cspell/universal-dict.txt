@@ -6,6 +6,10 @@ incl
 resp
 timespec
 
+# ai
+automode
+mtok
+
 # theme
 Fira
 Monokai
@@ -79,4 +83,4 @@ yaxis
 yshift
 
 # unclassified
-Automode
+betterleaks
