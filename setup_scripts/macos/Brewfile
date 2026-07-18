@@ -19,9 +19,10 @@ brew "uv"               # Python package installer
 brew "ruff"             # Python linter
 brew "direnv"           # Environment variable management
 brew "tmux"             # Terminal multiplexer
-brew "rust"
-brew "starship"
-brew "pre-commit" 
+brew "rust"             # Rust programming language
+brew "starship"         # Cross-shell prompt
+brew "pre-commit"       # Pre-commit hooks framework
+brew "betterleaks"       # Memory leak detection tool
 
 # neovim related
 brew "neovim"           # Text editor
