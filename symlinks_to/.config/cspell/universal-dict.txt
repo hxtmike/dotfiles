@@ -1,5 +1,9 @@
 # universal dict
 
+# variation
+vendored
+vendoring
+
 # abbreviation
 creds
 incl
@@ -15,10 +19,12 @@ Fira
 Monokai
 
 # cli tools
+betterleaks
 direnv
 envrc
 gh
 glab
+neofetch
 starship
 vimcmd
 
@@ -42,16 +48,27 @@ ipynb
 mypy
 plotlyjs
 pycache
+pylintrc
+rcfile
 venv
+cythonize
 
 # pandas
 lsuffix
 rsuffix
+tseries
+
+# db
+dbhost
+dbpass
+dbport
+dbuser
 
 # data
 colname
 colnames
 rawfile
+kron
 
 # graph related
 addopts
@@ -59,6 +76,8 @@ aggfunc
 bargap
 bordercolor
 borderwidth
+colorway
+edgecolor
 figsize
 floatfmt
 gridcolor
@@ -66,21 +85,28 @@ histnorm
 hovertemplate
 linecolor
 nbinsx
+showarrow
 showgrid
 showlegend
 showline
+sqltypes
 testpaths
+tickfont
 tunnelblick
 twingate
 unnormalised
 vline
+vrect
 xanchor
 xaxes
 xaxis
+xref
 yanchor
 yaxes
 yaxis
+yref
 yshift
+zeroline
+dtick
 
 # unclassified
-betterleaks
