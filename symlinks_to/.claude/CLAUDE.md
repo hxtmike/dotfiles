@@ -37,6 +37,11 @@
 
 - Prefer **method chaining** over intermediate assignments
 
+#### Plotting
+
+- Prefer **plotly** over matplotlib/seaborn unless the project already standardises on another library
+- Prefer **method chaining** here too, e.g. `go.Figure(...).update_layout(...).update_xaxes(...)`
+
 ### SQL
 
 - Follow existing SQL code style in the project
@@ -74,6 +79,7 @@ Use `AskUserQuestion` tool to explicitly ask user for approval before making add
 - **Stage specific files** by name; avoid `git add -A` or `git add .`
 - **Do not commit** without explicit user instruction
 - **Do not push** without explicit user instruction
+- **Before opening a glab MR or gh PR**, check whether the branch needs to be rebased onto `main` (e.g. `main` has advanced or the branch is behind); if so, flag it and rebase before submitting
 
 ## Shell Command Preferences
 
