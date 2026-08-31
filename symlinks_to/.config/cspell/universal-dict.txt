@@ -5,11 +5,12 @@ vendored
 vendoring
 
 # abbreviation
+anth
 creds
 incl
 resp
 timespec
-ANTH
+highspeed
 
 # ai
 automode
@@ -25,20 +26,25 @@ direnv
 envrc
 gh
 glab
+herdr
 neofetch
+pdfplumber
 starship
 vimcmd
 
 # software
+bitwarden
 cowork
 fastfetch
 ghostty
 Gsheets
 gworkspace
+jamf
 postico
 snowsql
 teamviewer
 visidata
+worktrees
 
 # python
 aiometer
@@ -86,6 +92,7 @@ gridcolor
 histnorm
 hovertemplate
 linecolor
+makespan
 nbinsx
 showarrow
 showgrid
@@ -94,6 +101,7 @@ showline
 sqltypes
 testpaths
 tickfont
+tickformat
 tunnelblick
 twingate
 unnormalised
@@ -102,6 +110,7 @@ vrect
 xanchor
 xaxes
 xaxis
+xbins
 xref
 yanchor
 yaxes
