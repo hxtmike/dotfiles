@@ -9,6 +9,7 @@ creds
 incl
 resp
 timespec
+ANTH
 
 # ai
 automode
@@ -42,6 +43,7 @@ visidata
 # python
 aiometer
 anytype
+cythonize
 docstrings
 dotenv
 ipynb
@@ -51,7 +53,6 @@ pycache
 pylintrc
 rcfile
 venv
-cythonize
 
 # pandas
 lsuffix
@@ -67,8 +68,8 @@ dbuser
 # data
 colname
 colnames
-rawfile
 kron
+rawfile
 
 # graph related
 addopts
@@ -77,6 +78,7 @@ bargap
 bordercolor
 borderwidth
 colorway
+dtick
 edgecolor
 figsize
 floatfmt
@@ -107,6 +109,14 @@ yaxis
 yref
 yshift
 zeroline
-dtick
+
+# ai related
+DEEPSEEK
+genai
+Kimi
+litellm
+mistralai
+Ollama
+OPENROUTER
 
 # unclassified
