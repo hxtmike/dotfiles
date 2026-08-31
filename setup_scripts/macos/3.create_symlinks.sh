@@ -7,6 +7,8 @@ dirs_to_create=(
     "$HOME/Library/Application Support/Code/User"
     "$HOME/.config/cspell"
     "$HOME/.config/zsh"
+    "$HOME/.config/herdr"
+    "$HOME/.claude/hooks"
 )
 mkdir -p "${dirs_to_create[@]}"
 
@@ -33,6 +35,10 @@ dirs_to_repos=(
     ["$HOME/.config/starship.toml"]=".config/starship.toml"
     ["$HOME/.config/cspell/universal-dict.txt"]=".config/cspell/universal-dict.txt"
 
+    # herdr — link only config.toml; the rest of ~/.config/herdr is runtime state
+    # (sockets, logs, session.json, release-notes.json) that must stay local
+    ["$HOME/.config/herdr/config.toml"]=".config/herdr/config.toml"
+
     # VisiData ignores XDG on macOS, so link the config to the legacy fallback
     # path it always reads regardless of shell/env (no VD_CONFIG dependency)
     ["$HOME/.visidatarc"]="home/.visidatarc"
@@ -53,6 +59,11 @@ dirs_to_repos=(
     ["$HOME/.claude/CLAUDE.md"]=".claude/CLAUDE.md"
     ["$HOME/.claude/settings.json"]=".claude/settings.json"
     ["$HOME/.claude/statusline-command.sh"]=".claude/statusline-command.sh"
+
+    # herdr integration hook for Claude Code — link the single file, not the
+    # hooks/ dir, so unmanaged hooks can sit beside it (herdr overwrites this
+    # file on `herdr integration install claude`, which writes through the link)
+    ["$HOME/.claude/hooks/herdr-agent-state.sh"]=".claude/hooks/herdr-agent-state.sh"
 
     # VS Code
     ["$HOME/Library/Application Support/Code/User/settings.json"]="vscode/settings.json"

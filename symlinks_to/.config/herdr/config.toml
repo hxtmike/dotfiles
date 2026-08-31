@@ -1,0 +1,48 @@
+# herdr configuration — symlinked to ~/.config/herdr/config.toml
+# Full annotated defaults: see the template embedded in the herdr binary.
+
+onboarding = false
+
+[theme]
+name = "terminal"
+auto_switch = false
+
+[ui.toast]
+delivery = "system"              # agent 状态变化走 Mac 系统通知
+
+[ui.sound]
+enabled = true                   # 状态变化响一声
+
+[session]
+resume_agents_on_restore = true  # 开机后连 agent 一起恢复；想手动控制就设 false
+
+[worktrees]
+# 默认是 ~/.herdr/worktrees，但那里在 ~/Development 之外，direnv 向上找不到
+# ~/Development/.env（load_dotenv=true 把它当 RC 用），worktree 里会缺全部凭据。
+# 放在 Development 下面则复用同一个已 allow 的 RC，无需再 direnv allow。
+# 硬编码而非引用变量：herdr 的 config.toml 是被二进制自己解析的，不经过 shell，
+# 无法引用 zsh 里的 $DEV_DIR（见 .config/zsh/.localrc）。改动 DEV_DIR 时记得同步这里。
+directory = "~/Development/.worktrees"
+
+[experimental]
+reveal_hidden_cursor_for_cjk_ime = true
+cjk_ime_agents = ["claude", "codex"]        # 只在 agent pane 露出光标；shell/vim pane 保留原生光标形状
+switch_ascii_input_source_in_prefix = true
+
+[theme.custom]
+accent        = "#ff6188"  # Monokai Pro 标志性的粉红
+text          = "#fcfcfa"  # 主文字
+subtext0      = "#939293"  # 次要文字
+panel_bg      = "#2d2a2e"  # 主背景
+surface0      = "#403e41"  # 选中行高亮
+surface1      = "#5b595c"  # 选区
+surface_dim   = "#221f22"  # 侧边栏(更深)
+overlay0      = "#727072"  # 注释灰
+overlay1      = "#939293"
+mauve         = "#ab9df2"  # 紫
+green         = "#a9dc76"
+yellow        = "#ffd866"
+red           = "#ff6188"
+blue          = "#78dce8"  # 青
+teal          = "#78dce8"
+peach         = "#fc9867"  # 橙
