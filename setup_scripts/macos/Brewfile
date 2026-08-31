@@ -23,6 +23,8 @@ brew "rust"             # Rust programming language
 brew "starship"         # Cross-shell prompt
 brew "pre-commit"       # Pre-commit hooks framework
 brew "betterleaks"       # Memory leak detection tool
+brew "herdr"            # Terminal workspace manager for AI coding agents
+brew "delta"            # Git diff viewer
 
 # neovim related
 brew "neovim"           # Text editor
