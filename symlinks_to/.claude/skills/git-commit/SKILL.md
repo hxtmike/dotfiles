@@ -125,14 +125,21 @@ EOF
 
 ### 6. Optional Push (with guardrails)
 
-Only run this step when the user explicitly opts in by passing `--push` (or equivalent: `push`, `推送`) as a skill argument. Without that opt-in, stop after step 5.
+Only run this step when the user explicitly opts in by passing one of these as a skill argument. Without that opt-in, stop after step 5.
 
-`--gh-pr` and `--glab-mr` (step 7) **imply `--push`** — if either is passed, run this step first.
+- `--push` (or equivalent: `push`, `推送`) → push, but **refuse** if the current branch is protected (see check 2)
+- `--push-to-main` (or equivalent: `--push to main`, `push to main`, `--push main`, `推送到 main`) → push **and** waive the protected-branch check for the branch you are currently on
+
+`--gh-pr` and `--glab-mr` (step 7) **imply `--push`** — if either is passed, run this step first. They do **not** imply `--push-to-main`.
 
 Run these checks **in order** and abort on the first failure — do NOT auto-resolve, just report the failure and stop:
 
 1. **Commit must have succeeded** in step 5. If it failed (e.g., pre-commit hook), do not push.
-2. **Protected-branch check**: get the current branch with `git rev-parse --abbrev-ref HEAD`. If it is `main`, `master`, `develop`, `release`, or matches `release/*`, abort and report — never push to a protected branch from this skill.
+2. **Protected-branch check**: get the current branch with `git rev-parse --abbrev-ref HEAD`. If it is `main`, `master`, `develop`, `release`, or matches `release/*`:
+   - With plain `--push` → abort and report. Do not offer to override; the user must re-run with the explicit argument.
+   - With `--push-to-main` → proceed, but state in the report which protected branch is being pushed to, so the override is visible rather than silent.
+
+   This override waives **only** this check. It never relaxes check 4 below: no `--force`, no `--force-with-lease`, no `--no-verify`, no retry-with-force on rejection.
 3. **Upstream check**: run `git rev-parse --abbrev-ref --symbolic-full-name @{u}` to detect upstream.
    - If it exists: `git push`
    - If it does not (exits non-zero): `git push -u origin <current-branch>` to set upstream on first push
@@ -163,7 +170,7 @@ Run these checks **in order** and abort on the first failure:
 5. **Existing PR/MR check**: before creating, check if one already exists for the current branch:
    - GitHub: `gh pr view --json url,state` — if it exists and is open, report the URL and stop (do not create a duplicate)
    - GitLab: `glab mr view` — same behaviour
-6. **Resolve base branch**: detect the default branch with `git symbolic-ref --short refs/remotes/origin/HEAD` (strip the `origin/` prefix). Fall back to `main` then `master` if that fails.
+6. **Resolve base branch**: detect the default branch with `git symbolic-ref --short refs/remotes/origin/HEAD` (strip the `origin/` prefix). Fall back to `main` then `master` if that fails. If the current branch **equals** the resolved base branch, abort and report — there is nothing to open a PR/MR against. (This is the expected outcome when `--push-to-main` was used.)
 7. **Count commits on branch**: `git rev-list --count <base>..HEAD`.
    - **If 1 commit** → use the simple `--fill` path:
      - GitHub: `gh pr create --fill`
@@ -218,5 +225,5 @@ Run these checks **in order** and abort on the first failure:
 - NEVER update git config
 - NEVER run destructive commands (--force, hard reset) without explicit request
 - NEVER skip hooks (--no-verify) unless user asks
-- NEVER force push to main/master
+- NEVER force push to main/master — the `--push-to-main` opt-in permits an ordinary push only, never a forced one
 - If commit fails due to hooks, fix and create NEW commit (don't amend)
