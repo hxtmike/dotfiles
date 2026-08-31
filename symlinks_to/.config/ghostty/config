@@ -1,5 +1,9 @@
 theme = Monokai Classic
 
+# 硬编码而非引用变量：Ghostty 的 config 是被二进制自己解析的，不经过 shell，
+# 无法引用 zsh 里的 $DEV_DIR（见 .config/zsh/.localrc）。改动 DEV_DIR 时记得同步这里。
+working-directory = ~/Development
+
 macos-non-native-fullscreen = true
 maximize = true
 window-padding-y = 24,0
