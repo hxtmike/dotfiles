@@ -8,6 +8,7 @@
     "workbench.colorTheme": "Monokai",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "none",
+    "workbench.activityBar.location": "top",
     "workbench.tree.enableStickyScroll": true,
         // changes and save
     "workbench.editor.highlightModifiedTabs": true,
@@ -16,6 +17,7 @@
     // "workbench.fontAliasing": "antialiased",
     "workbench.editorAssociations": {},
     "workbench.editor.showTabIndex": true,
+    "workbench.editor.useModal": "some",
 
     // material icon theme
     "material-icon-theme.opacity": 0.75,
@@ -64,6 +66,7 @@
     "terminal.integrated.customGlyphs": true,
     "terminal.integrated.stickyScroll.enabled": true,
     "terminal.integrated.scrollback": 100000,
+    "terminal.integrated.mouseWheelScrollSensitivity": 3,
     "terminal.integrated.profiles.windows": {
         "PowerShell": {
             "source": "PowerShell",
@@ -234,6 +237,5 @@
     "docker.extension.enableComposeLanguageServer": false,
     "[csv]": {
         "editor.inlayHints.maximumLength": 0
-    },
-    "terminal.integrated.mouseWheelScrollSensitivity": 3
+    }
 }
