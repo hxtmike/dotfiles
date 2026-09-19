@@ -8,6 +8,7 @@ dirs_to_create=(
     "$HOME/.config/cspell"
     "$HOME/.config/zsh"
     "$HOME/.config/herdr"
+    "$HOME/.config/tabiew"
     "$HOME/.claude/hooks"
 )
 mkdir -p "${dirs_to_create[@]}"
@@ -38,6 +39,10 @@ dirs_to_repos=(
     # herdr — link only config.toml; the rest of ~/.config/herdr is runtime state
     # (sockets, logs, session.json, release-notes.json) that must stay local
     ["$HOME/.config/herdr/config.toml"]=".config/herdr/config.toml"
+
+    # tabiew — link only config.toml; tabiew rewrites it when settings change
+    # from the command palette (writes go through the link)
+    ["$HOME/.config/tabiew/config.toml"]=".config/tabiew/config.toml"
 
     # VisiData ignores XDG on macOS, so link the config to the legacy fallback
     # path it always reads regardless of shell/env (no VD_CONFIG dependency)

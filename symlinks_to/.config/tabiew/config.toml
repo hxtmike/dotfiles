@@ -1,0 +1,10 @@
+# tabiew configuration — symlinked to ~/.config/tabiew/config.toml
+# tabiew rewrites this file whenever a setting is changed from the command
+# palette, so in most cases there is no need to edit it by hand.
+
+theme = "Monokai"
+show_table_borders = true
+show_table_row_numbers = true
+use_nerd_font = true
+fp_precision = 3
+
