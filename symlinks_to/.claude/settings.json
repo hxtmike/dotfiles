@@ -1,5 +1,4 @@
 {
-  "model": "claude-fable-5[1m]",
   "permissions": {
     "allow": [
       "Bash(git log:*)",
@@ -67,14 +66,26 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/herdr-agent-state.sh session",
+            "timeout": 10
+          }
+        ]
+      }
     ]
   },
-  "agentPushNotifEnabled": true,
   "statusLine": {
     "type": "command",
     "command": "zsh ~/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true
-  }
+  },
+  "agentPushNotifEnabled": true
 }
