@@ -9,6 +9,7 @@ dirs_to_create=(
     "$HOME/.config/zsh"
     "$HOME/.config/herdr"
     "$HOME/.config/tabiew"
+    "$HOME/.config/git"
     "$HOME/.claude/hooks"
 )
 mkdir -p "${dirs_to_create[@]}"
@@ -43,6 +44,11 @@ dirs_to_repos=(
     # tabiew — link only config.toml; tabiew rewrites it when settings change
     # from the command palette (writes go through the link)
     ["$HOME/.config/tabiew/config.toml"]=".config/tabiew/config.toml"
+
+    # delta reads all its options from git config, so its settings live in a
+    # gitconfig-syntax file included from ~/.gitconfig (which is private and
+    # lives in the dotfiles_local repo, since it holds the user name and email)
+    ["$HOME/.config/git/delta.gitconfig"]=".config/git/delta.gitconfig"
 
     # Zsh config modules
     ["$HOME/.config/zsh/omz.zsh"]=".config/zsh/omz.zsh"

@@ -25,12 +25,14 @@ betterleaks
 direnv
 envrc
 gh
+gitconfig
 glab
 herdr
 neofetch
 pdfplumber
 starship
 vimcmd
+zdiff
 
 # software
 bitwarden

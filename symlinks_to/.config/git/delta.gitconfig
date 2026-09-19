@@ -1,0 +1,106 @@
+# delta — git diff viewer configuration
+#
+# Delta deliberately has no config file of its own: it reads every option from
+# git config. This file is therefore written in gitconfig syntax and pulled in
+# via an [include] directive from ~/.gitconfig, which lives in the private
+# dotfiles_local repo (it holds the user name and email).
+#
+# Splitting it out this way keeps identity private while letting the tool
+# settings live here, tracked and shared across machines.
+#
+# Note: delta reads ~/.gitconfig directly and ignores GIT_CONFIG_GLOBAL, so
+# testing changes by pointing that variable at a scratch file will not work.
+# Verify with `delta --show-config` instead.
+
+# Wire delta into git itself
+[core]
+	# Route the paged output of every git command through delta
+	pager = delta
+
+[interactive]
+	# Make `git add -p` and friends use delta too. --color-only is required:
+	# without it delta reformats the content and git can no longer parse the
+	# hunks you accept or reject.
+	diffFilter = delta --color-only
+
+[merge]
+	# Show the common ancestor alongside both sides in conflict markers, which
+	# makes it far easier to tell who changed what.
+	conflictStyle = zdiff3
+
+[diff]
+	# Detect renames and copies, so delta can label a file as renamed rather
+	# than showing it as a full delete plus add.
+	renames = copies
+
+# Delta's own options
+[delta]
+	# Side-by-side split. Cramped on narrow terminals; to switch it off for a
+	# single command run `git -c delta.side-by-side=false diff`.
+	side-by-side = true
+
+	# Line numbers in both columns. Effectively mandatory with side-by-side,
+	# otherwise the two halves are hard to line up by eye.
+	line-numbers = true
+
+	# Syntax highlighting theme. Other Monokai variants available:
+	# "Monokai Extended Bright" (higher contrast) and
+	# "Monokai Extended Origin" (closer to the original, greyer palette).
+	# Preview them all with `delta --show-syntax-themes`.
+	syntax-theme = Monokai Extended
+
+	# State the terminal background explicitly rather than letting delta guess,
+	# which otherwise washes the colours out when detection fails.
+	dark = true
+
+	# Jump between files and hunks with n / N while paging. This also changes
+	# the file and hunk header markers to the Δ and • symbols that the default
+	# navigate-regex matches on.
+	navigate = true
+
+	# Render file names as clickable OSC 8 links. Supported by Ghostty; inside
+	# tmux this needs tmux 3.4 or newer to pass through.
+	hyperlinks = true
+
+	# Wrap over-long lines instead of truncating them, up to two extra rows.
+	# This is already delta's default; spelled out here so the behaviour is
+	# obvious rather than implied. Zero disables wrapping, "unlimited" wraps
+	# as many times as needed.
+	wrap-max-lines = 2
+
+	# Deliberately NOT setting max-line-length. Its default is 3000, and delta
+	# overrides it anyway whenever wrapping is on (see --wrap-max-lines above),
+	# so setting it here would be inert at best and a downgrade at worst.
+
+	# --- Purely cosmetic from here down ---
+	#
+	# The colours below are taken from the Monokai Extended palette that the
+	# syntax-theme above actually emits, so the chrome matches the code:
+	#   #F92672 pink    #A6E22E green   #66D9EF cyan    #FD971F orange
+	#   #E6DB74 yellow  #BE84FF purple  #F8F8F2 text    #75715E comment grey
+	# Delta's own defaults here are the terminal's generic blue and yellow,
+	# which sit outside that palette and read as slightly off next to it.
+
+	# The file name header and the rule underneath it, in Monokai orange.
+	# Swap for #E6DB74 if you prefer the softer string yellow.
+	file-style = bold "#FD971F"
+	file-decoration-style = "#FD971F" ul
+
+	# The @@ hunk header: show file name and line number, boxed in Monokai
+	# cyan. All three sub-styles are set, otherwise the box turns cyan while
+	# the path and line number inside it stay on delta's default blue.
+	hunk-header-style = file line-number syntax
+	hunk-header-file-style = "#66D9EF"
+	hunk-header-line-number-style = "#66D9EF"
+	hunk-header-decoration-style = "#66D9EF" box
+
+	# Dim the line numbers of unchanged context so the eye lands on the
+	# changes. Monokai's comment grey; the previous value was One Dark's grey,
+	# which is a different palette altogether.
+	line-numbers-zero-style = "#75715E"
+
+	# The gutter separators between the line numbers and the code. These
+	# default to the terminal's generic blue, which is the last bit of
+	# non-Monokai colour on screen; comment grey lets them recede instead.
+	line-numbers-left-style = "#75715E"
+	line-numbers-right-style = "#75715E"
