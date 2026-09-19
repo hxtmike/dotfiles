@@ -42,13 +42,12 @@ gworkspace
 jamf
 postico
 snowsql
+tabiew
 teamviewer
-visidata
 worktrees
 
 # python
 aiometer
-anytype
 cythonize
 docstrings
 dotenv

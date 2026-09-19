@@ -44,10 +44,6 @@ dirs_to_repos=(
     # from the command palette (writes go through the link)
     ["$HOME/.config/tabiew/config.toml"]=".config/tabiew/config.toml"
 
-    # VisiData ignores XDG on macOS, so link the config to the legacy fallback
-    # path it always reads regardless of shell/env (no VD_CONFIG dependency)
-    ["$HOME/.visidatarc"]="home/.visidatarc"
-
     # Zsh config modules
     ["$HOME/.config/zsh/omz.zsh"]=".config/zsh/omz.zsh"
     ["$HOME/.config/zsh/aliases.zsh"]=".config/zsh/aliases.zsh"

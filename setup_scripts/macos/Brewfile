@@ -13,6 +13,7 @@ brew "btop"             # top replacement
 brew "fastfetch"        # neofetch replacement
 brew "fzf"              # fuzzy finder
 brew "jq"               # JSON processor
+brew "tabiew"           # TUI viewer for CSV, parquet, and other tabular data
 
 # Development tools
 brew "uv"               # Python package installer
