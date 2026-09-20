@@ -1,5 +1,19 @@
 export KEYTIMEOUT=1
 
+# XDG base directories.
+#
+# $HOME/.config is already the spec's default when this is unset, so this
+# changes nothing for tools that follow the spec. It matters for the ones that
+# deviate on macOS: they use ~/Library/Application Support unless
+# XDG_CONFIG_HOME is set explicitly. lazygit is the current example.
+#
+# This lives here rather than in .zprofile because .zprofile only runs for
+# LOGIN shells, which left the variable unset in herdr panes, editor terminals
+# and anything else that starts a non-login shell. .zshrc covers every
+# interactive shell, which is every context a TUI is ever launched from.
+# Non-interactive shells still miss it; nothing here needs it there.
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Must be sourced first — see omz.zsh for why order matters
 source ~/.config/zsh/omz.zsh
 

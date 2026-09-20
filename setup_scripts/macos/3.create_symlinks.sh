@@ -5,12 +5,12 @@
 # Directories that must exist before symlinking (parent dirs for individual file symlinks)
 dirs_to_create=(
     "$HOME/Library/Application Support/Code/User"
-    "$HOME/Library/Application Support/lazygit"
     "$HOME/.config/cspell"
     "$HOME/.config/zsh"
     "$HOME/.config/herdr"
     "$HOME/.config/tabiew"
     "$HOME/.config/git"
+    "$HOME/.config/lazygit"
     "$HOME/.claude/hooks"
 )
 mkdir -p "${dirs_to_create[@]}"
@@ -52,12 +52,11 @@ dirs_to_repos=(
     ["$HOME/.config/git/delta.gitconfig"]=".config/git/delta.gitconfig"
 
     # lazygit ignores git's core.pager, so delta has to be wired up again in
-    # lazygit's own config. The file is stored under .config/ here to match
-    # every other tool, but the link target is the Application Support path,
-    # because lazygit only looks in .config when XDG_CONFIG_HOME is set and it
-    # is not set on this machine yet. Same shape as the Ghostty entry below;
-    # if XDG_CONFIG_HOME is ever set, add the .config target here too.
-    ["$HOME/Library/Application Support/lazygit/config.yml"]=".config/lazygit/config.yml"
+    # lazygit's own config. Only the .config path is linked: lazygit falls back
+    # to ~/Library/Application Support when XDG_CONFIG_HOME is unset, but
+    # .zshrc sets it for every interactive shell, and a TUI is never launched
+    # from anything else.
+    ["$HOME/.config/lazygit/config.yml"]=".config/lazygit/config.yml"
 
     # Zsh config modules
     ["$HOME/.config/zsh/omz.zsh"]=".config/zsh/omz.zsh"
@@ -67,9 +66,10 @@ dirs_to_repos=(
     ["$HOME/.config/zsh/pkg_update.zsh"]=".config/zsh/pkg_update.zsh"
     ["$HOME/.config/zsh/vi_mode.zsh"]=".config/zsh/vi_mode.zsh"
 
-    # Ghostty terminal — requires both the XDG config dir and the legacy app support path
+    # Ghostty terminal. Only the XDG dir is linked; the legacy
+    # ~/Library/Application Support/com.mitchellh.ghostty/config path used to be
+    # linked as well, but Ghostty reads ~/.config/ghostty on its own.
     ["$HOME/.config/ghostty"]=".config/ghostty"
-    ["$HOME/Library/Application Support/com.mitchellh.ghostty/config"]=".config/ghostty/config"
 
     # Claude Code
     ["$HOME/.claude/CLAUDE.md"]=".claude/CLAUDE.md"
