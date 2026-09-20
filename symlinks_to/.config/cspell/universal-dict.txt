@@ -28,6 +28,7 @@ gh
 gitconfig
 glab
 herdr
+lazygit
 neofetch
 pdfplumber
 starship

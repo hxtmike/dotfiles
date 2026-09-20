@@ -5,6 +5,7 @@
 # Directories that must exist before symlinking (parent dirs for individual file symlinks)
 dirs_to_create=(
     "$HOME/Library/Application Support/Code/User"
+    "$HOME/Library/Application Support/lazygit"
     "$HOME/.config/cspell"
     "$HOME/.config/zsh"
     "$HOME/.config/herdr"
@@ -49,6 +50,14 @@ dirs_to_repos=(
     # gitconfig-syntax file included from ~/.gitconfig (which is private and
     # lives in the dotfiles_local repo, since it holds the user name and email)
     ["$HOME/.config/git/delta.gitconfig"]=".config/git/delta.gitconfig"
+
+    # lazygit ignores git's core.pager, so delta has to be wired up again in
+    # lazygit's own config. The file is stored under .config/ here to match
+    # every other tool, but the link target is the Application Support path,
+    # because lazygit only looks in .config when XDG_CONFIG_HOME is set and it
+    # is not set on this machine yet. Same shape as the Ghostty entry below;
+    # if XDG_CONFIG_HOME is ever set, add the .config target here too.
+    ["$HOME/Library/Application Support/lazygit/config.yml"]=".config/lazygit/config.yml"
 
     # Zsh config modules
     ["$HOME/.config/zsh/omz.zsh"]=".config/zsh/omz.zsh"

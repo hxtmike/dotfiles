@@ -1,0 +1,49 @@
+# lazygit configuration
+# Symlinked to ~/Library/Application Support/lazygit/config.yml. The file sits
+# under .config/ in this repo like every other tool, but the link target is the
+# Application Support path: lazygit only reads ~/.config/lazygit when
+# XDG_CONFIG_HOME is set, and it is not set on this machine yet.
+#
+# Why this file needs to exist at all: lazygit does NOT honour git's
+# core.pager. Up to 0.64 the git.paging.useConfig option could borrow git's
+# pager; 0.65 removed that option and renamed git.paging to git.diffRenderers,
+# so delta has to be wired up explicitly below.
+#
+# Everything in the [delta] section of delta.gitconfig still applies here:
+# delta reads git config no matter who invokes it, so the theme, side-by-side
+# layout, line numbers and colours all carry over. Only the flags that must
+# DIFFER inside lazygit belong on the command line below.
+
+git:
+  # Cycle through these at runtime with | (and \ to go backwards). The active
+  # renderer's name is shown in the status bar.
+  diffRenderers:
+    # Two flags differ from ordinary terminal use:
+    #
+    #   --paging=never
+    #     lazygit does its own scrolling; letting delta start a second pager
+    #     makes the two fight over the panel.
+    #
+    #   --hyperlinks-file-link-format
+    #     delta.gitconfig turns hyperlinks on with delta's default file://
+    #     format, which is right in a terminal but wrong in a TUI: a click
+    #     would hand the file to the OS handler. lazygit-edit:// instead opens
+    #     it in lazygit's own editor at the clicked line. A command-line flag
+    #     beats the gitconfig value, so the terminal keeps file:// and only
+    #     lazygit gets this one. That is the whole reason it is set here
+    #     rather than in delta.gitconfig.
+    - name: delta
+      command: "delta --paging=never --hyperlinks-file-link-format=lazygit-edit://{path}:{line}"
+
+    # Word-level diff straight from git. Far easier to read than a line diff
+    # for prose, config files, and anything that has been reflowed. Requires
+    # no extra tool, which is why it is here and difftastic is not.
+    - type: rawGit
+      name: color-words
+      args: ["--color-words"]
+
+    # git's own coloured output with no filtering. Worth keeping last: it is
+    # the fastest on very large diffs and the thing to fall back to if delta
+    # ever renders something oddly.
+    - type: rawGit
+      name: plain
