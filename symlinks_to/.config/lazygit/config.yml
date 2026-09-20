@@ -1,8 +1,8 @@
 # lazygit configuration
-# Symlinked to ~/Library/Application Support/lazygit/config.yml. The file sits
-# under .config/ in this repo like every other tool, but the link target is the
-# Application Support path: lazygit only reads ~/.config/lazygit when
-# XDG_CONFIG_HOME is set, and it is not set on this machine yet.
+# Symlinked to ~/.config/lazygit/config.yml. lazygit only reads that path when
+# XDG_CONFIG_HOME is set, otherwise it falls back to ~/Library/Application
+# Support/lazygit; .zshrc exports the variable for every interactive shell, so
+# the fallback is never reached and is deliberately not linked.
 #
 # Why this file needs to exist at all: lazygit does NOT honour git's
 # core.pager. Up to 0.64 the git.paging.useConfig option could borrow git's
@@ -13,6 +13,12 @@
 # delta reads git config no matter who invokes it, so the theme, side-by-side
 # layout, line numbers and colours all carry over. Only the flags that must
 # DIFFER inside lazygit belong on the command line below.
+
+gui:
+  # Width of the left-hand column as a fraction of the window. Default is
+  # 0.3333, which leaves too little room for a side-by-side delta diff on the
+  # right. Press + / _ in lazygit to cycle screen modes for a temporary change.
+  sidePanelWidth: 0.2
 
 git:
   # Cycle through these at runtime with | (and \ to go backwards). The active
