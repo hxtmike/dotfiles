@@ -73,8 +73,18 @@ dirs_to_repos=(
 
     # Claude Code
     ["$HOME/.claude/CLAUDE.md"]=".claude/CLAUDE.md"
-    ["$HOME/.claude/settings.json"]=".claude/settings.json"
     ["$HOME/.claude/statusline-command.sh"]=".claude/statusline-command.sh"
+
+    # .claude/settings.json is deliberately NOT linked, and the mapping must not
+    # be added back. Claude Code rewrites the live settings file at runtime with
+    # machine-local state, so the live file is linked from elsewhere; re-adding
+    # the mapping here would make whichever setup script runs last win and
+    # silently replace those settings with this copy.
+    #
+    # What is tracked here is the shareable template the live file is seeded
+    # from. Portable settings — hooks, statusLine, generic permissions — belong
+    # in it and should be kept in step with the live file. It uses ~ paths by
+    # design, so do not "fix" them to absolute ones.
 
     # herdr integration hook for Claude Code — link the single file, not the
     # hooks/ dir, so unmanaged hooks can sit beside it (herdr overwrites this
