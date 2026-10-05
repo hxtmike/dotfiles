@@ -81,6 +81,12 @@ dirs_to_repos=(
     # file on `herdr integration install claude`, which writes through the link)
     ["$HOME/.claude/hooks/herdr-agent-state.sh"]=".claude/hooks/herdr-agent-state.sh"
 
+    # Flags the session while Claude is waiting on a scheduled wake-up or a
+    # poll, so the status line can keep Herdr's status icon on "working" rather
+    # than idle (see the script header). Ours, not herdr's, so it is safe from
+    # `herdr integration install claude`.
+    ["$HOME/.claude/hooks/claude-monitoring-flag.sh"]=".claude/hooks/claude-monitoring-flag.sh"
+
     # VS Code
     ["$HOME/Library/Application Support/Code/User/settings.json"]="vscode/settings.json"
     ["$HOME/Library/Application Support/Code/User/keybindings.json"]="vscode/keybindings.json"

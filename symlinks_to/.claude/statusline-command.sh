@@ -11,7 +11,7 @@ seven_day=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // emp
 
 # Shorten cwd: replace $HOME with ~
 home="$HOME"
-display_dir="${cwd/#$home/\~}"
+display_dir="${cwd/#$home/~}"
 
 parts=()
 parts+=("$display_dir")
@@ -24,3 +24,19 @@ rate_parts=()
 [ ${#rate_parts[@]} -gt 0 ] && parts+=("${(j:  :)rate_parts}")
 
 printf '%s\n' "${(j: | :)parts}"
+
+# Middle stage of a three-step pipeline: hooks/claude-monitoring-flag.sh
+# records *when* (a flag file) -> this block draws a marker -> Herdr reads the
+# screen. None of the three talks to the next one directly; the flag file and
+# the rendered line are the only handovers.
+#
+# A fresh flag means the session is waiting on a monitor or a scheduled
+# wake-up. The line must start with ✳ and end with …: Herdr's Claude manifest
+# matches that shape as a live turn (live_turn_working), which keeps the
+# pane's status icon on "working" rather than idle. Flags older than an hour
+# are ignored in case the clearing hook never fired.
+session_id=$(echo "$input" | jq -r '.session_id // ""')
+flag="${TMPDIR:-/tmp}/claude-monitoring/$session_id"
+if [ -n "$session_id" ] && [ -n "$(find "$flag" -mmin -60 2>/dev/null)" ]; then
+    printf '%s\n' '✳ monitoring…'
+fi

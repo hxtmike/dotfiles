@@ -78,6 +78,29 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "^(Monitor|ScheduleWakeup)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh ~/.claude/hooks/claude-monitoring-flag.sh set",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh ~/.claude/hooks/claude-monitoring-flag.sh clear",
+            "async": true
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
