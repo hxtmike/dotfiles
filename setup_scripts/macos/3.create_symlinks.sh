@@ -12,6 +12,7 @@ dirs_to_create=(
     "$HOME/.config/git"
     "$HOME/.config/lazygit"
     "$HOME/.claude/hooks"
+    "$HOME/.codex"
 )
 mkdir -p "${dirs_to_create[@]}"
 
@@ -97,6 +98,21 @@ dirs_to_repos=(
     # `herdr integration install claude`.
     ["$HOME/.claude/hooks/claude-monitoring-flag.sh"]=".claude/hooks/claude-monitoring-flag.sh"
 
+    # Codex — same working rules as Claude Code, so point AGENTS.md at CLAUDE.md
+    # rather than keeping a second copy that drifts
+    ["$HOME/.codex/AGENTS.md"]=".claude/CLAUDE.md"
+
+    # herdr integration hook for Codex — a genuinely different script from the
+    # Claude one (different hook payload fields, CODEX_THREAD_ID check), so it
+    # gets its own file rather than sharing. Note the path has no hooks/ dir:
+    # `herdr integration install codex` expects it directly under ~/.codex.
+    ["$HOME/.codex/herdr-agent-state.sh"]=".codex/herdr-agent-state.sh"
+
+    # Codex's config.toml and hooks.json are NOT here — both embed absolute
+    # $HOME paths, and config.toml also accumulates per-project trust entries as
+    # Codex is used. They are linked from elsewhere, for the same reason as
+    # .claude/settings.json above.
+
     # VS Code
     ["$HOME/Library/Application Support/Code/User/settings.json"]="vscode/settings.json"
     ["$HOME/Library/Application Support/Code/User/keybindings.json"]="vscode/keybindings.json"
@@ -124,6 +140,25 @@ fi
 mkdir -p "$claude_skills_dir"
 for skill in "${BASEDIR}"/.claude/skills/*(/N); do
     target="$claude_skills_dir/${skill:t}"
+    if [ -e "$target" ] || [ -L "$target" ]; then
+        rm -rf "$target"
+        echo "🗑️ Removed $target"
+    fi
+    ln -s "$skill" "$target"
+    echo "🔗  Created symlink for $target \n"
+done
+
+# Codex skills: same SKILL.md format as Claude Code, so share the same sources.
+# Link per-skill for the same reason as above, and additionally to avoid
+# clobbering ~/.codex/skills/.system (Codex's own bundled skills).
+codex_skills_dir="$HOME/.codex/skills"
+if [ -L "$codex_skills_dir" ]; then
+    rm "$codex_skills_dir"
+    echo "🗑️ Removed folder symlink $codex_skills_dir"
+fi
+mkdir -p "$codex_skills_dir"
+for skill in "${BASEDIR}"/.claude/skills/*(/N); do
+    target="$codex_skills_dir/${skill:t}"
     if [ -e "$target" ] || [ -L "$target" ]; then
         rm -rf "$target"
         echo "🗑️ Removed $target"
