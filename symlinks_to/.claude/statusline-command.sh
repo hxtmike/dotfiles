@@ -30,11 +30,12 @@ printf '%s\n' "${(j: | :)parts}"
 # screen. None of the three talks to the next one directly; the flag file and
 # the rendered line are the only handovers.
 #
-# A fresh flag means the session is waiting on a monitor or a scheduled
-# wake-up. The line must start with ✳ and end with …: Herdr's Claude manifest
-# matches that shape as a live turn (live_turn_working), which keeps the
-# pane's status icon on "working" rather than idle. Flags older than an hour
-# are ignored in case the clearing hook never fired.
+# A fresh flag means the session is waiting on a monitor, a scheduled
+# wake-up or a background shell. The line must start with ✳ and end with …:
+# Herdr's Claude manifest matches that shape as a live turn
+# (live_turn_working), which keeps the pane's status icon on "working" rather
+# than idle. Flags older than an hour are ignored in case the clearing hook
+# never fired.
 session_id=$(echo "$input" | jq -r '.session_id // ""')
 flag="${TMPDIR:-/tmp}/claude-monitoring/$session_id"
 if [ -n "$session_id" ] && [ -n "$(find "$flag" -mmin -60 2>/dev/null)" ]; then

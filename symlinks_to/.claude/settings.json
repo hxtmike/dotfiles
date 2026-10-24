@@ -81,7 +81,7 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "^(Monitor|ScheduleWakeup)$",
+        "matcher": "^(Monitor|ScheduleWakeup|Bash)$",
         "hooks": [
           {
             "type": "command",
