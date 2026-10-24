@@ -26,6 +26,7 @@ dirs_to_repos=(
     ["$HOME/.profile"]="home/.profile"
     ["$HOME/.zsh"]="home/.zsh"
     ["$HOME/.zshrc"]="home/.zshrc"
+    ["$HOME/.zshenv"]="home/.zshenv"
     ["$HOME/.zprofile"]="home/.zprofile"
 
     # Vim
@@ -170,4 +171,9 @@ done
 # create zshrc.local file
 if [ ! -f ~/.config/zsh/.zshrc.local ]; then
     touch ~/.config/zsh/.zshrc.local
+fi
+
+# create zshenv.local file
+if [ ! -f ~/.config/zsh/.zshenv.local ]; then
+    touch ~/.config/zsh/.zshenv.local
 fi

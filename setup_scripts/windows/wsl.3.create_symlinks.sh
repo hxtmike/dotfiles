@@ -6,6 +6,7 @@ dirs_to_repos=(
     ["$HOME/.profile"]="home/.profile"
     ["$HOME/.zsh"]="home/.zsh"
     ["$HOME/.zshrc"]="home/.zshrc"
+    ["$HOME/.zshenv"]="home/.zshenv"
     ["$HOME/.zprofile"]="home/.zprofile"
     ["$HOME/.vimrc"]="home/.vimrc"
 
