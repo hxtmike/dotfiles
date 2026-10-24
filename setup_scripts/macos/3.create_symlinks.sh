@@ -48,8 +48,8 @@ dirs_to_repos=(
     ["$HOME/.config/tabiew/config.toml"]=".config/tabiew/config.toml"
 
     # delta reads all its options from git config, so its settings live in a
-    # gitconfig-syntax file included from ~/.gitconfig (which is private and
-    # lives in the dotfiles_local repo, since it holds the user name and email)
+    # gitconfig-syntax file included from ~/.gitconfig, which is not tracked here
+    # because it carries per-machine identity
     ["$HOME/.config/git/delta.gitconfig"]=".config/git/delta.gitconfig"
 
     # lazygit ignores git's core.pager, so delta has to be wired up again in

@@ -2,11 +2,11 @@
 #
 # Delta deliberately has no config file of its own: it reads every option from
 # git config. This file is therefore written in gitconfig syntax and pulled in
-# via an [include] directive from ~/.gitconfig, which lives in the private
-# dotfiles_local repo (it holds the user name and email).
+# via an [include] directive from ~/.gitconfig, which is not tracked here
+# because it carries per-machine identity.
 #
-# Splitting it out this way keeps identity private while letting the tool
-# settings live here, tracked and shared across machines.
+# Splitting it out this way keeps identity out of this repo while letting the
+# tool settings live here, tracked and shared across machines.
 #
 # Note: delta reads ~/.gitconfig directly and ignores GIT_CONFIG_GLOBAL, so
 # testing changes by pointing that variable at a scratch file will not work.
