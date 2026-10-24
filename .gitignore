@@ -3,6 +3,11 @@ test.py
 .DS_Store
 .ruff_cache
 
+# Per-machine agent permissions, granted as they are needed while working in
+# this repo. Note this is *this repo's* project settings, not the global
+# ~/.claude/settings.json the symlinks_to/ tree seeds.
+/.claude/settings.local.json
+
 # Credentials and secrets
 .env*
 *.pem
