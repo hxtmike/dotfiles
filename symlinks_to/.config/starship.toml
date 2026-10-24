@@ -32,6 +32,19 @@ $character"""
 
 palette = 'monokai'
 
+# Raised from the 500ms default. [direnv], [python], and [git_status] (which
+# execs `git status --porcelain`) spawn subprocesses, and on a cold start (first
+# prompt of the day, or after a long idle) macOS has to page in the binary and
+# run its Gatekeeper checks, which can take seconds and drops the segment with
+# a timeout warning. This only delays the prompt when a command is genuinely
+# slow; the usual warm-cache case is unaffected.
+command_timeout = 5000
+
+# Raised from the 30ms default. Listing the current directory for module
+# detection takes ~26ms even on a warm cache, so any cold-start I/O tips it over
+# and prints "Scanning current directory timed out".
+scan_timeout = 200
+
 [os]
 disabled = false
 style = "bg:red fg:crust"
