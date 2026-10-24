@@ -237,5 +237,9 @@
     "docker.extension.enableComposeLanguageServer": false,
     "[csv]": {
         "editor.inlayHints.maximumLength": 0
-    }
+    },
+    "jupyter.widgetScriptSources": [
+        "jsdelivr.com",
+        "unpkg.com"
+    ]
 }
