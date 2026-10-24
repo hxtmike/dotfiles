@@ -96,4 +96,4 @@ if ! command -v tree-sitter &> /dev/null; then
     sudo apt install tree-sitter-cli
 fi
 
-touch ~/.localrc
+mkdir -p ~/.config/zsh && touch ~/.config/zsh/.zshrc.local

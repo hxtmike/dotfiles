@@ -25,7 +25,7 @@ source ~/.config/zsh/pkg_update.zsh
 source ~/.config/zsh/vi_mode.zsh
 
 # Local machine-specific overrides (not tracked in dotfiles)
-source ~/.config/zsh/.localrc
+source ~/.config/zsh/.zshrc.local
 
 # Tool initialisations
 eval "$(starship init zsh)"

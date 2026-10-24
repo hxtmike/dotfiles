@@ -167,7 +167,7 @@ for skill in "${BASEDIR}"/.claude/skills/*(/N); do
     echo "🔗  Created symlink for $target \n"
 done
 
-# create localrc file
-if [ ! -f ~/.config/zsh/.localrc ]; then
-    touch ~/.config/zsh/.localrc
+# create zshrc.local file
+if [ ! -f ~/.config/zsh/.zshrc.local ]; then
+    touch ~/.config/zsh/.zshrc.local
 fi

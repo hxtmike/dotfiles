@@ -34,7 +34,7 @@ resume_agents_on_restore = true  # 开机后连 agent 一起恢复；想手动�
 # ~/Development/.env（load_dotenv=true 把它当 RC 用），worktree 里会缺全部凭据。
 # 放在 Development 下面则复用同一个已 allow 的 RC，无需再 direnv allow。
 # 硬编码而非引用变量：herdr 的 config.toml 是被二进制自己解析的，不经过 shell，
-# 无法引用 zsh 里的 $DEV_DIR（见 .config/zsh/.localrc）。改动 DEV_DIR 时记得同步这里。
+# 无法引用 zsh 里的 $DEV_DIR（见 .config/zsh/.zshrc.local）。改动 DEV_DIR 时记得同步这里。
 directory = "~/Development/.worktrees"
 
 [experimental]
