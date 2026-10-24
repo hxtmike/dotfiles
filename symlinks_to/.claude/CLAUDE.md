@@ -52,6 +52,17 @@
 
 - Follow existing SQL code style in the project
 
+## Decide Before Doing
+
+- When a choice could reasonably go more than one way and changes the result
+  (data source, how an ambiguous case is classified, which design), **ask me
+  before implementing** via `AskUserQuestion`: options, what each implies, your
+  recommendation. Never pick one "for now" and mention it in the summary —
+  a silent default is a decision.
+- Meanwhile, do everything that does not depend on the answer.
+- Routine calls a careful colleague would make alone (naming, fixture shape,
+  helper placement) need no question; when unsure, ask.
+
 ## Code Modification Rules
 
 ### Basic Principles
