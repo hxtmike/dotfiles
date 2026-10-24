@@ -7,10 +7,10 @@ vendoring
 # abbreviation
 anth
 creds
+highspeed
 incl
 resp
 timespec
-highspeed
 
 # ai
 automode
@@ -131,3 +131,6 @@ Ollama
 OPENROUTER
 
 # unclassified
+SRCS
+stdlib
+unsuffixed
