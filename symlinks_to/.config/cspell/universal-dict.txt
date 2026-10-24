@@ -11,10 +11,8 @@ highspeed
 incl
 resp
 timespec
-
-# ai
-automode
-mtok
+srcs
+stdlib
 
 # theme
 Fira
@@ -63,6 +61,7 @@ rcfile
 venv
 
 # pandas
+unsuffixed
 lsuffix
 rsuffix
 tseries
@@ -73,11 +72,12 @@ dbpass
 dbport
 dbuser
 
-# data
+# data science
 colname
 colnames
 kron
 rawfile
+backtest
 
 # graph related
 addopts
@@ -122,6 +122,8 @@ yshift
 zeroline
 
 # ai related
+automode
+mtok
 DEEPSEEK
 genai
 Kimi
@@ -131,6 +133,3 @@ Ollama
 OPENROUTER
 
 # unclassified
-SRCS
-stdlib
-unsuffixed
