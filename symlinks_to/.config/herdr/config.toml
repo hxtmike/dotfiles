@@ -7,6 +7,19 @@ onboarding = false
 name = "terminal"
 auto_switch = false
 
+[keys]
+# agent 之间快速切换（herdr 默认这三个都是空的，不配就只能走 prefix+w 选择器）
+focus_agent    = "prefix+shift+1..9"  # Ctrl+B 然后 Shift+N 直达第 N 个 agent（占掉了 switch_workspace 的推荐位）
+next_agent     = "prefix+shift+j"   # 顺序循环（对应 prefix+j 在 pane 间下移）
+previous_agent = "prefix+shift+k"   # 反向循环（j/k 下/上，对应 prefix+j/k 在 pane 间移动）
+
+[ui]
+# "priority" = 注意力队列：blocked / done 的 agent 自动排到最上面。
+# 代价是排序会动，所以 focus_agent 的 Shift+1..9 序号不固定——按序号跳之前先看一眼面板，
+# 或者直接用 Shift+J/K 循环（循环跟着当前排序走，不受影响）。
+agent_panel_sort  = "priority"
+status_indicators = "symbols"    # blocked/working/done/idle 用不同字形，比默认的彩色圆点好认
+
 [ui.toast]
 delivery = "system"              # agent 状态变化走 Mac 系统通知
 
@@ -34,9 +47,12 @@ accent        = "#ff6188"  # Monokai Pro 标志性的粉红
 text          = "#fcfcfa"  # 主文字
 subtext0      = "#939293"  # 次要文字
 panel_bg      = "#2d2a2e"  # 主背景
-surface0      = "#403e41"  # 选中行高亮
-surface1      = "#5b595c"  # 选区
-surface_dim   = "#221f22"  # 侧边栏(更深)
+# 不要设 sidebar_bg / active_row_bg：留空才会继承宿主终端背景，侧边栏的半透明靠这个。
+# 设成实色会把整条侧边栏刷成不透明。只有光标条需要实色。
+selection_bg  = "#939293"  # 导航/选择器的光标条 — 不设则与背景同色，导航模式看不出选中项；已是灰色档的上限，再明显就得换 accent 色底
+surface0      = "#403e41"  # 通用表层
+surface1      = "#5b595c"  # 通用表层(更亮)
+surface_dim   = "#221f22"  # 表层(更深)
 overlay0      = "#727072"  # 注释灰
 overlay1      = "#939293"
 mauve         = "#ab9df2"  # 紫
