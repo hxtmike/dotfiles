@@ -241,5 +241,6 @@
     "jupyter.widgetScriptSources": [
         "jsdelivr.com",
         "unpkg.com"
-    ]
+    ],
+    "claudeCode.preferredLocation": "panel"
 }
