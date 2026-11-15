@@ -59,7 +59,7 @@ fi
 
 # ruff, python linter
 if ! command -v ruff &> /dev/null; then
-    sudo uv tool install ruff
+    uv tool install ruff
 fi
 
 if ! command -v direnv &> /dev/null; then
