@@ -8,6 +8,10 @@ if [[ "$(uname)" == "Darwin" ]]; then
         brew upgrade --cask --greedy
         echo "🧹 Cleaning up..."
         brew cleanup --prune=all
+        if command -v uv &> /dev/null; then
+            echo "🐍 Upgrading uv tools..."
+            uv tool upgrade --all
+        fi
         echo "✅ done"
     }
 elif grep -qiE "microsoft|wsl" /proc/version &> /dev/null; then
@@ -19,6 +23,10 @@ elif grep -qiE "microsoft|wsl" /proc/version &> /dev/null; then
         echo "🧹 Cleaning up..."
         sudo apt autoremove -y
         sudo apt autoclean -y
+        if command -v uv &> /dev/null; then
+            echo "🐍 Upgrading uv tools..."
+            uv tool upgrade --all
+        fi
         echo "✅ done"
     }
 fi
