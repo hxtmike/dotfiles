@@ -35,3 +35,7 @@ alias lt='l --tree --level=2 | head -100'
 
 alias cd='z'
 alias cld='claude'
+
+if [[ $OSTYPE == darwin* ]]; then
+    alias sleepnow='pmset displaysleepnow'
+fi
