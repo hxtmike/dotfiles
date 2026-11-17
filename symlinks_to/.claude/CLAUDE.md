@@ -195,6 +195,23 @@ Never use `;` to chain read-only commands into a single Bash call. Instead, issu
 The agent's Bash tool resets the working directory to the primary project directory between every tool call. cd does not persist across calls.
 Fix: Always use git -C /absolute/path/to/repo when operating on a repo other than the primary working directory.  Never rely on cd persisting.
 
+### Commands Handed to Me
+
+The terminal hard-wraps long lines and pads them with spaces, so a command copied off the
+screen arrives broken.
+
+- Run the command yourself whenever possible; hand one to me only when it needs me
+  (interactive login, sudo, another machine)
+- Put the command on the clipboard with `pbcopy` rather than asking me to copy it off the
+  screen. Pipe it with `printf '%s'` so there is no trailing newline and the paste does
+  not run by itself
+- Announce it on its own line, in bold, so I cannot miss it:
+  **📋 已复制到剪贴板 — 直接粘贴运行**, then show the command below for review
+- The clipboard holds one thing: hand over one command at a time, and never overwrite it
+  again in the same reply
+- No `pbcopy` (WSL, remote): fall back to a single line of **at most 120 characters**, no
+  `\` continuation, no heredoc, one command per code block
+
 ## Testing
 
 (To be added)
