@@ -65,6 +65,7 @@ dirs_to_repos=(
     ["$HOME/.config/zsh/aliases.zsh"]=".config/zsh/aliases.zsh"
     ["$HOME/.config/zsh/functions.zsh"]=".config/zsh/functions.zsh"
     ["$HOME/.config/zsh/fzf.zsh"]=".config/zsh/fzf.zsh"
+    ["$HOME/.config/zsh/run_every.zsh"]=".config/zsh/run_every.zsh"
     ["$HOME/.config/zsh/pkg_update.zsh"]=".config/zsh/pkg_update.zsh"
     ["$HOME/.config/zsh/vi_mode.zsh"]=".config/zsh/vi_mode.zsh"
 

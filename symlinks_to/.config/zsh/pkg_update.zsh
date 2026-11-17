@@ -31,20 +31,5 @@ elif grep -qiE "microsoft|wsl" /proc/version &> /dev/null; then
     }
 fi
 
-pkg_update_daily() {
-    local stamp="$HOME/.last_update_ts"
-    local now=$(date +%s)
-    local interval=$((7 * 24 * 60 * 60))
-
-    if [[ -f "$stamp" ]]; then
-        local last_ts=$(cat "$stamp")
-        if (( now - last_ts < interval )); then
-            echo "Updated within the last 7 days"
-            return
-        fi
-    fi
-
-    # Mark as run upfront so interruptions don't trigger a retry within the interval
-    echo "$now" > "$stamp"
-    pkg_update
-}
+# Weekly, at shell startup (see run_every.zsh)
+zsh_periodic+=("168 pkg_update")

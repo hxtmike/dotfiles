@@ -21,6 +21,7 @@ source ~/.config/zsh/omz.zsh
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/functions.zsh
 source ~/.config/zsh/fzf.zsh
+source ~/.config/zsh/run_every.zsh
 source ~/.config/zsh/pkg_update.zsh
 source ~/.config/zsh/vi_mode.zsh
 
@@ -38,9 +39,10 @@ fpath=($HOME/.docker/completions $fpath)
 # disable auto update for claude, used homebrew to update
 export DISABLE_AUTOUPDATER=1
 
-# Update the daily package update file (used by pkg_update.zsh)
-pkg_update_daily
-
 # Clear the terminal and show system info after loading the config
 clear
 fastfetch
+
+# Run the due zsh_periodic jobs (see run_every.zsh). Must stay last: anything
+# printed before the clear above is wiped.
+zsh_periodic_run
