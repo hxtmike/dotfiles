@@ -4,13 +4,18 @@
 
 - After completing each task, always end your response with: "[🔥事毕🔥]"
 - Always respond in Chinese or English only.
-- **Automode is not commit permission.** Even in automode / auto-accept / bypass-permissions, complete the work then **stop before committing**: present the final result (diff or summary) and wait for my explicit approval. Autonomous edits, tests, and tooling are fine; `git commit`/`git push` always need a fresh, explicit go-ahead.
+- **Automode is not commit permission.** Even in automode / auto-accept / bypass-permissions, complete the work then **stop before committing**: present the final result (diff or summary) and wait for my explicit approval. Autonomous edits, tests, and tooling are fine; `git commit`/`git push` always need a fresh, explicit go-ahead. How I review, and the one exception: see "Review Before Commit".
 
 ## Response Style
 
 - Prefer **concise, precise bullet points** over long stretches of continuous prose
 - Keep each bullet to a single claim; put detail in a nested bullet or a table rather than a paragraph
 - If the content genuinely does not fit bullet points (e.g. a narrative walkthrough, a chain of reasoning that only reads correctly in order), **say so and ask me to confirm** switching to prose before writing it out
+- When explaining a code problem (bug, unexpected behaviour, review finding), show it with a
+  **small concrete data example next to the relevant code snippet**: the input, what the code
+  produces, and what it should produce
+  - Use real values from the repo or an actual run where possible; say so when the example is made up
+  - Skip this when the problem is obvious from one line (typo, wrong name)
 
 ## File Operation Permissions
 
@@ -25,6 +30,28 @@
 - **Must ask for confirmation** before running any `brew install` command
 
 ## Code Style Guidelines
+
+### Design Preferences
+
+- Simplest change that solves the stated problem; do not enumerate every conceivable case
+- If I need to trace the logic to understand it, it is too clever: prefer a plain idiom
+- Do not add guards for cases that cannot occur; ask if unsure whether one can
+- Group related state and behaviour in a class; derived values are properties;
+  prefer methods on the domain object over free functions
+- Use what the library and the repo already provide; extend around them rather than
+  hand-rolling, and keep downstream call sites unchanged where possible
+- When a pattern will clearly recur, propose one small shared mechanism instead of
+  per-site patches (propose first: this is a refactor)
+
+### Naming
+
+- Use the exact domain term and match names already used for the same concept
+- Never coin words or abbreviations; a long explicit name beats a short vague one
+- Do not take a generic word (e.g. "deploy") for something narrower
+
+### Output
+
+- Use the logger, not print; quiet on success, reason plus fix on failure
 
 ### Python
 
@@ -42,6 +69,10 @@
 #### Pandas
 
 - Prefer **method chaining** over intermediate assignments
+- Filter rows with `.query()` rather than `.loc` or `[]`; interpolate Python values with an f-string
+  and `!r`, e.g. `query(f'col1 == {row["col1"]!r} and col2 == {row["col2"]!r}')`
+- Select columns with `.filter()` rather than `df[[...]]`
+- Add or change columns with `.assign()`, never `df["x"] = ...`
 
 #### Plotting
 
@@ -95,6 +126,11 @@ This is a deliberate exception to "only modify explicitly instructed areas" abov
 - If the counterpart is a symlink to the file you just changed, the pair is
   already in sync — say so and do not replace the link with a copy.
 
+## Scripts vs Agents
+
+- Anything that can be a deterministic script is a script; leave to an agent only the
+  steps that need judgement
+
 ## File Operation Preferences
 
 - Evaluate necessity before creating new files
@@ -112,6 +148,44 @@ This is a deliberate exception to "only modify explicitly instructed areas" abov
 - **Do not commit** without explicit user instruction
 - **Do not push** without explicit user instruction
 - **Before opening a glab MR or gh PR**, check whether the branch needs to be rebased onto `main` (e.g. `main` has advanced or the branch is behind); if so, flag it and rebase before submitting
+
+### Review Before Commit
+
+The staging area is my review queue:
+
+| Where | Meaning |
+| -- | -- |
+| Committed | I have reviewed it |
+| Staged | The one part waiting for my review |
+| Unstaged | Written, not yet up for review |
+
+- **Small change**: stage all of it; I review once.
+- **Large change**: finish the whole work, then split it into parts I can review one at a time.
+  - Stage only the next part and leave the rest unstaged. Split a file by hunk if needed.
+  - Say what the part is and how many are left.
+  - I review the staged part and commit it myself. Then stage the next part.
+  - If I ask for changes, fix and restage the same part before moving on.
+- **Push** after the last part is committed, with my go-ahead.
+- **Exception**: on a branch I have already reviewed, a commit that only fixes formatting or lint to get CI
+  green may be committed and pushed without asking. Tell me afterwards.
+
+## Tickets
+
+- **Before creating one**, search for an existing ticket on the same problem. If it is not
+  obvious that a ticket is the right one, name it and wait for my confirmation
+- **A new ticket states the symptom, not a guess**: what is wrong, where it was seen, what
+  is known so far
+- **Several problems**: one parent ticket with one or more sub-tickets, one for each part
+  that can be fixed and verified on its own. Split by what can be verified alone, not by
+  file or repository. A sub-ticket can be split again the same way
+- **A problem found later gets its own ticket**: a sub-ticket of the same parent if it
+  belongs to the same whole, otherwise a related ticket
+- **Relations**: `blocked by` / `blocks` when one ticket cannot go on before another,
+  `related` otherwise. A comment saying "wait for X" is not enough
+- **Show me a short summary before creating anything**, not the full draft
+- **Assignee**: me, unless someone else clearly fits better; then name the person and why,
+  and wait for my confirmation
+- **Team or project unclear**: ask instead of guessing
 
 ## Worktrees and Agent Orchestration (Herdr)
 
@@ -138,7 +212,8 @@ This is a deliberate exception to "only modify explicitly instructed areas" abov
   defaults to the branch name, which keeps the Herdr sidebar aligned with `git branch`.
   A hand-written label hides which branch the workspace is on. If a worktree needs extra
   context, rename it afterwards as `<branch> · <purpose>` with `herdr workspace rename`,
-  keeping the branch name as the prefix
+  keeping the branch name as the prefix. Exception: a worktree working on a ticket is named
+  by ticket and role, see "Owner and Helpers"
 
 ### Who Does the Work
 
@@ -150,8 +225,26 @@ This is a deliberate exception to "only modify explicitly instructed areas" abov
   its results. Herdr notifications cover state changes
 - Already inside the target worktree: do the work directly, no nesting
 
+### Owner and Helpers
+
+- **Always know your role**: which ticket you are on, and whether you are its owner or a
+  helper. If that is not clear, ask me before doing anything else
+- **One ticket, one owner.** The owner moves the ticket forward, edits its description and
+  status, and runs the tests that verify the whole fix. A sub-ticket is a ticket: it has
+  its own owner
+- **A helper does one bounded piece** of the same ticket, usually one repository. It takes
+  its change up to a green MR, reports in a ticket comment, and leaves the rest to the owner
+  - The piece has decisions that are mine (review, commit): a Herdr agent in its own worktree
+  - Read-only investigation or an independent check: an in-process subagent
+- **A problem that blocks the current ticket** may be fixed in the same MR, but ask me
+  first; its own ticket still gets the result
+- **Coordinate through the ticket and the MRs**, not by agents waiting on each other
+- **Show the role in Herdr**: rename the workspace to `<ticket> <role>`, e.g.
+  `PROJ-123 owner` or `PROJ-123 helper`. `<ticket>` is the identifier, never the title
+
 ### The Prompt Handed to the Child Agent Must Be Self-Contained
 
+- Its ticket identifier and its role, as in "Owner and Helpers"
 - Task goal, acceptance criteria (which tests to run, passing ruff and pyright), and
   the boundaries of the change
 - Restate explicitly: no `git commit` or `git push` without my explicit approval
