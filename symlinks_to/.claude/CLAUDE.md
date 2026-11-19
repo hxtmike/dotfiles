@@ -4,7 +4,7 @@
 
 - After completing each task, always end your response with: "[🔥事毕🔥]"
 - Always respond in Chinese or English only.
-- **Automode is not commit permission.** Even in automode / auto-accept / bypass-permissions, complete the work then **stop before committing**: present the final result (diff or summary) and wait for my explicit approval. Autonomous edits, tests, and tooling are fine; `git commit`/`git push` always need a fresh, explicit go-ahead. How I review, and the one exception: see "Review Before Commit".
+- **Automode is not commit permission.** Even in automode / auto-accept / bypass-permissions, complete the work then **stop before committing**: present the final result (diff or summary) and wait for my explicit approval. Autonomous edits, tests, and tooling are fine; `git commit`/`git push` of content the agent wrote always need a fresh, explicit go-ahead. Where the line is, and how I review: see "Review Before Commit".
 
 ## Response Style
 
@@ -94,6 +94,15 @@
 - Routine calls a careful colleague would make alone (naming, fixture shape,
   helper placement) need no question; when unsure, ask.
 
+## Verify What I Say
+
+- **A fact I state is a claim to check, not a given**: that I changed some data, set a config, deployed a
+  version, merged an MR. Verify it against the real thing before building on it
+- **If it does not hold**, stop and come back to me so I can correct it: what I said, what was found, where
+  it was looked up. Do not work around it, and do not silently go on with what was found
+- **If it cannot be checked**, say so before going on
+- This is about facts, not about instructions or decisions: those are mine and need no verification
+
 ## Code Modification Rules
 
 ### Basic Principles
@@ -151,7 +160,35 @@ This is a deliberate exception to "only modify explicitly instructed areas" abov
 
 ### Review Before Commit
 
-The staging area is my review queue:
+Two questions decide whether to stop for me. Go on without asking only when both answers are no, and tell
+me afterwards.
+
+| # | Question | If yes |
+| -- | -- | -- |
+| 1 | Does it carry content the agent wrote? | I review it before the commit, and give the go-ahead before the push |
+| 2 | Does its effect reach beyond this MR branch? | Ask me first |
+
+- **Content the agent wrote** is anything that took judgement. What a tool produces mechanically is not:
+  - A formatter or lint autofix, on a branch I have already reviewed
+  - A merge of `main` into the branch. It does count as written by the agent when it has a conflict, or
+    when what came in from `main` touches what the branch changes
+- **This MR branch** is the local branch and its remote. Beyond it are `main`, an MR that is already
+  approved (a push resets the approvals), a deploy, and anything in production
+- **`main`** stands for the long-lived branch that MRs merge into, whatever the repository calls it
+  (`main`, `master`, `dev`)
+
+| Case | 1 | 2 | Result |
+| -- | -- | -- | -- |
+| Commit the branch's own changes | yes | no | I review first |
+| Push reviewed commits to the MR branch | yes | no | Wait for my go-ahead |
+| Merge `main` into the branch and push: no conflict, nothing in common | no | no | Go on, tell me afterwards |
+| The same merge with a conflict, or touching what the branch changes | yes | no | I review first |
+| Formatter or lint autofix and push, branch already reviewed | no | no | Go on, tell me afterwards |
+| Work done directly on `main` | yes | yes | I review first, and ask before the push |
+| Push to an MR that is already approved | - | yes | Ask me first |
+| Merge an MR into `main`, deploy | - | yes | Ask me first |
+
+For question 1, the staging area is my review queue:
 
 | Where | Meaning |
 | -- | -- |
@@ -166,8 +203,6 @@ The staging area is my review queue:
   - I review the staged part and commit it myself. Then stage the next part.
   - If I ask for changes, fix and restage the same part before moving on.
 - **Push** after the last part is committed, with my go-ahead.
-- **Exception**: on a branch I have already reviewed, a commit that only fixes formatting or lint to get CI
-  green may be committed and pushed without asking. Tell me afterwards.
 
 ## Tickets
 
