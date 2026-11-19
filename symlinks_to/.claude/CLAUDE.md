@@ -248,7 +248,7 @@ For question 1, the staging area is my review queue:
   A hand-written label hides which branch the workspace is on. If a worktree needs extra
   context, rename it afterwards as `<branch> · <purpose>` with `herdr workspace rename`,
   keeping the branch name as the prefix. Exception: a worktree working on a ticket is named
-  by ticket and role, see "Owner and Helpers"
+  by ticket and role, see "Owner, Helpers and Reviewer"
 
 ### Who Does the Work
 
@@ -260,10 +260,12 @@ For question 1, the staging area is my review queue:
   its results. Herdr notifications cover state changes
 - Already inside the target worktree: do the work directly, no nesting
 
-### Owner and Helpers
+### Owner, Helpers and Reviewer
 
-- **Always know your role**: which ticket you are on, and whether you are its owner or a
-  helper. If that is not clear, ask me before doing anything else
+- **Always know your role**: which ticket you are on, and whether you are its owner, a
+  helper or a reviewer. If that is not clear, ask me before doing anything else
+- **Owner and helper exist only on a ticket I own.** On someone else's ticket or MR the
+  role is reviewer
 - **One ticket, one owner.** The owner moves the ticket forward, edits its description and
   status, and runs the tests that verify the whole fix. A sub-ticket is a ticket: it has
   its own owner
@@ -271,15 +273,18 @@ For question 1, the staging area is my review queue:
   its change up to a green MR, reports in a ticket comment, and leaves the rest to the owner
   - The piece has decisions that are mine (review, commit): a Herdr agent in its own worktree
   - Read-only investigation or an independent check: an in-process subagent
+- **A reviewer only reads.** It does not change the other person's ticket, branch or MR.
+  Findings come to me first; an MR comment or an approval goes out only after my go-ahead
 - **A problem that blocks the current ticket** may be fixed in the same MR, but ask me
   first; its own ticket still gets the result
 - **Coordinate through the ticket and the MRs**, not by agents waiting on each other
 - **Show the role in Herdr**: rename the workspace to `<ticket> <role>`, e.g.
-  `PROJ-123 owner` or `PROJ-123 helper`. `<ticket>` is the identifier, never the title
+  `PROJ-123 owner`, `PROJ-123 helper` or `PROJ-123 reviewer`. `<ticket>` is the identifier,
+  never the title. A reviewer with no ticket uses the MR number instead, e.g. `!456 reviewer`
 
 ### The Prompt Handed to the Child Agent Must Be Self-Contained
 
-- Its ticket identifier and its role, as in "Owner and Helpers"
+- Its ticket identifier and its role, as in "Owner, Helpers and Reviewer"
 - Task goal, acceptance criteria (which tests to run, passing ruff and pyright), and
   the boundaries of the change
 - Restate explicitly: no `git commit` or `git push` without my explicit approval
